@@ -51,7 +51,7 @@
         }
     };
 
-    _log.timeEnd = function (key, opt_display) {
+    _log.timeEnd = function (key, opt_show) {
         var t = (new Date()).getTime();
         if (key) {
             if (_log.timeStat[key] && _log.timeStat[key].lastStart) {
@@ -61,7 +61,7 @@
                 delete _log.timeStat[key].lastStart;
 
                 //check whether log, default true
-                if ((opt_display === undefined) ? true : opt_display)
+                if ((opt_show === undefined) ? true : opt_show)
                     _log.log(String.Format('{0} {1}', key, gap));
 
                 _log.timeStat[key].iterations.push(gap);

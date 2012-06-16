@@ -1,18 +1,18 @@
 Underscore Log
 ==============
 
-<pre>####Cross Browser advaced logging with Underscore Log and Firebug Lite</pre>
+	<b>Cross Browser advaced logging with Underscore Log and Firebug Lite</b>
 
 ----------------------------------------------------------------------------
 
 ###Goal
 
-<pre>Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production</pre>
+	Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
 
 ----------------------------------------------------------------------------
 
 ###Features
-<code>
+<pre>
 #### 1.0.0 v
 <ul>
 <li>created a alias for a specific features to Underscore Log: _log</li>
@@ -22,15 +22,33 @@ Underscore Log
 <li>through _log.external() you can implement a complex control code in an external file: _logExt.js</li>
 <li>created a minimal ui which allows the control errors and warns even when Firebug Lite is closed</li>
 </ul>
-</code>
+</pre>
 
 ----------------------------------------------------------------------------
 
 ###Docs
 
 ####_log(v)
-<code>
+<pre>
+It's print in console a simple string
 <ul>
 <li><b>v</b>: a String that is printed in console</li>
 </ul>
-</code>
+</pre>
+
+####_log.time(key)
+<pre>
+It initialize the timer
+<ul>
+<li><b>key</b>: a String that identifies the timer</li>
+</ul>
+</pre>
+
+####_log.timeEnd(key[,show])
+<pre>
+It ends the timer and (by default) print in console th result of timer
+<ul>
+<li><b>key</b>: a String that identifies the timer</li>
+<li><b>show</b>: a Bool that specifies if the result of timer is to be printed in console, by default this is true</li>
+</ul>
+</pre>
