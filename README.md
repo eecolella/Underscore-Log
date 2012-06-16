@@ -1,4 +1,4 @@
-Advaced-Logging
+Underscore Log
 ===============
 
-Cross Browser Advaced Logging
+Cross Browser advaced logging with Underscore Log and Firebug Lite

@@ -1,6 +1,13 @@
 ﻿
 (function ($) {
 
+    var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function () {
+        Firebug.chrome.open();
+    });
+    var $gen = $('<div class="general clearfix"><img class="icon" src="_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
+    var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
+    var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
+
     Function.prototype.bind = function (scope) {
         var _function = this;
         return function () {
@@ -107,7 +114,7 @@
     _log.error = function (v) {
         if (v) {
             console.error(v);
-            var $errorRecap = $('#uLog .error .icon.text');
+            var $errorRecap = $error.children('.icon.text');
             $errorRecap.text(+$errorRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
@@ -130,7 +137,7 @@
     _log.warn = function (v) {
         if (v) {
             console.warn(v);
-            var $warnRecap = $('#uLog .warn .icon.text');
+            var $warnRecap = $warn.children('.icon.text');
             $warnRecap.text(+$warnRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
@@ -185,9 +192,10 @@
     };
 
     $(function () {
-        if ($('#eecBar').length)
+        if ($('#eecBar').length) {
             var $eecBar = $('<div id="eecBar"></div>');
-        else
+        }
+        else {
             var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
                 var $this = $(this);
                 $this.stop().animate({
@@ -204,14 +212,10 @@
                     'width': '26px'
                 }, 100, 'linear');
             });
+        }
 
-        var $uLog = $('<div id="uLog" class="child clearfix"></div>').appendTo($eecBar).on('click', function () {
-            Firebug.chrome.open();
-        });
-        var $gen = $('<div class="general clearfix"><img class="icon" src="_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
-        var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
-        var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
-
+        $uLog.appendTo($eecBar);
+        
     });
 
 })(jQuery);

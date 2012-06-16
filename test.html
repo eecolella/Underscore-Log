@@ -1,6 +1,7 @@
 ﻿<!doctype html>
 <html style="background: #e0e0e0;">
 <head>
+    <title>Underscore Log Test Page</title>
     <link rel="stylesheet" href="_log.css" />
     <script type="text/javascript" src="//getfirebug.com/firebug-lite.js"></script>
     <script>window.Firebug || document.write('<script src="firebug-lite/build/firebug-lite.js"><\/script>')</script>
@@ -34,6 +35,8 @@
             _log.time('I\'m a timer');
 
             setTimeout(function () {
+
+                _log.warn('I\'m a warn');
 
                 //with the second parameter to false, the result did not show in console
                 _log.timeEnd('I\'m a timer', false);
