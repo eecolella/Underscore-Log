@@ -1,34 +1,25 @@
 Underscore Log
 ==============
 
-Cross Browser advaced logging with Underscore Log and Firebug Lite
-------------------------------------------------------------------
+## Cross Browser advaced logging with Underscore Log and Firebug Lite
+
+###Goal
+
+Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
+
+----------------------------------------------------------------------------
+
+###Features
 
 <ul>
-<li>Bird</li>
-<li>Magic</li>
+<li>created a alias for a specific features to Underscore Log: _log</li>
+<li>wrapped the ripetitive console.log() in _log()</li>
+<li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide statics through _log.timeStat()</li>
+<li>the collapsed group are auto opened if they contain error or warn</li>
+<li>through _log.external() you can implement a complex control code in an external file: _logExt.js</li>
+<li>created a minimal ui which allows the control errors and warns even when Firebug Lite is closed</li>
 </ul>
 
-<p>This is a normal paragraph:</p>
+----------------------------------------------------------------------------
 
-<pre><code>
-This is a code block.
-</code></pre>
-
-
-<code>
-This is a code block.
-</code>
-
-> This is the first level of quoting.
->
-> > This is nested blockquote.
->
-> Back to the first level.
-
-
-This is [an example](http://example.com/ "Title") inline link.
-
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
+###Docs

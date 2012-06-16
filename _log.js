@@ -2,7 +2,12 @@
 (function ($) {
 
     var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function () {
-        Firebug.chrome.open();
+        var $iFrameFb = $('#FirebugUI');
+        if (($iFrameFb[0].style.visibility == 'hidden') || ($iFrameFb.attr('allowtransparency') == 'true'))
+            Firebug.chrome.open();
+        else
+            Firebug.chrome.close();
+
     });
     var $gen = $('<div class="general clearfix"><img class="icon" src="_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
     var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
