@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Advaced Logging Test Page</title>
+    <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+    <script>window.Firebug || document.write('<script src="firebug-lite/build/firebug-lite.js"><\/script>')</script>
+    <script type="text/javascript" src="_log-min.js"></script>
+    <script type="text/javascript" src="_logExt.js"></script>
+    <script type="text/javascript">
+
+        _log('I\'m a simple log by _log() shortcut');
+
+        _log.group('I\'m a group expandend');
+        _log.assert(23 == 90, 'I\'m a failed comparison assertion');
+        _log.assert(23 == 23, 'I\'m a approved comparison assertion');
+        _log.groupEnd('I\'m a group expandend');
+
+        //test mishandling, miss key;
+        _log.time();
+
+        _log.time('I\'m a timer');
+
+        setTimeout(function () {
+
+            console.groupCollapsed('I\'m a group collapsed');
+            _log.timeEnd('I\'m a timer');
+            console.groupEnd('I\'m a group collapsed');
+
+            _log.external('I\'m external function', [1, 2, 3], location);
+
+            _log.time('I\'m a timer');
+
+            setTimeout(function () {
+
+                //with the second parameter to false, the result did not show in console
+                _log.timeEnd('I\'m a timer', false);
+                _log.timeSummary('I\'m a timer');
+
+            }, 1400);
+
+        }, 1500);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
