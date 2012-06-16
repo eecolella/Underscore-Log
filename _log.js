@@ -90,10 +90,15 @@
         }
     };
 
-    _log.assert = function (exp, v) {
+    _log.assert = function (exp, v, opt_mode) {
+        
         if ((exp !== undefined) && (v !== undefined)) {
-            if (!exp)
-                _log.error(v);
+            if (!exp) {
+                if (opt_mode == 'warn')
+                    _log.warn(v);
+                else
+                    _log.error(v);                       
+            }
         } else {
             throw 'Advaced Logging Error: in console.assert(exp,v) all parameters are required';
         }
