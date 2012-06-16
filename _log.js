@@ -1,5 +1,5 @@
 ﻿
-(function () {
+(function ($) {
 
     Function.prototype.bind = function (scope) {
         var _function = this;
@@ -102,6 +102,8 @@
     _log.error = function (v) {
         if (v) {
             console.error(v);
+            var $errorRecap = $('#uLog .error .icon.text');
+            $errorRecap.text(+$errorRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
                 $('#FirebugUI').contents().find('.logRow-error').each(function (i, el) {
@@ -113,7 +115,7 @@
                         }
                     };
                     fOpenParent($(el));
-                });      
+                });
             }
         } else {
             throw 'Advaced Logging Error: in console.error(v) parameter v is required';
@@ -123,6 +125,8 @@
     _log.warn = function (v) {
         if (v) {
             console.warn(v);
+            var $warnRecap = $('#uLog .warn .icon.text');
+            $warnRecap.text(+$warnRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
                 $('#FirebugUI').contents().find('.logRow-error').each(function (i, el) {
@@ -143,7 +147,7 @@
 
     _log.group = function (v) {
         if (v) {
-            console.group(String.Format('GROUP: {0}',v));
+            console.group(String.Format('GROUP: {0}', v));
         } else {
             throw 'Advaced Logging Error: in console.group(v) parameter v is required';
         }
@@ -175,4 +179,34 @@
         }
     };
 
-})();
+    $(function () {
+        if ($('#eecBar').length)
+            var $eecBar = $('<div id="eecBar"></div>');
+        else
+            var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
+                var $this = $(this);
+                $this.stop().animate({
+                    'width': '226px'
+                }, 150, 'linear', function () {
+                    $this.find('.info').css('opacity', 0).removeClass('hidden').animate({
+                        'opacity': 1
+                    }, 300, 'linear');
+                });
+            }).on('mouseleave', '.child', function () {
+                var $this = $(this);
+                $this.find('.info').addClass('hidden');
+                $this.stop().animate({
+                    'width': '26px'
+                }, 100, 'linear');
+            });
+
+        var $uLog = $('<div id="uLog" class="child clearfix"></div>').appendTo($eecBar).on('click', function () {
+            Firebug.chrome.open();
+        });
+        var $gen = $('<div class="general clearfix"><img class="icon" src="_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
+        var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
+        var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
+
+    });
+
+})(jQuery);
