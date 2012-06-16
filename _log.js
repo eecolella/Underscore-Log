@@ -15,87 +15,6 @@
         return str;
     };
 
-    console.time = function (key) {
-        var t = (new Date()).getTime();
-        if (key) {
-            if (!console.timeSummary[key])
-                console.timeSummary[key] = { avg: undefined, iterations: [] };
-            console.timeSummary[key].lastStart = t;
-        } else {
-            throw 'Advaced Logging Error: in console.time(key) parameter key is required';
-        }
-    };
-
-    console.timeEnd = function (key, opt_display) {
-        var t = (new Date()).getTime();
-        if (key) {
-            if (console.timeSummary[key] && console.timeSummary[key].lastStart) {
-                var gap = t - console.timeSummary[key].lastStart,
-                    sum = 0;
-
-                delete console.timeSummary[key].lastStart;
-
-                //check whether log, default true
-                if ((opt_display === undefined) ? true : opt_display)
-                    console.log(String.Format('{0} {1}', key, gap));
-
-                console.timeSummary[key].iterations.push(gap);
-
-                for (var i = console.timeSummary[key].iterations.length - 1; i >= 0; i--) {
-                    sum += console.timeSummary[key].iterations[i];
-                    if ((console.timeSummary[key].min === undefined) || (gap < console.timeSummary[key].min))
-                        console.timeSummary[key].min = gap;
-                    if ((console.timeSummary[key].max === undefined) || (gap > console.timeSummary[key].max))
-                        console.timeSummary[key].max = gap;
-                }
-                console.timeSummary[key].avg = Math.round(sum / console.timeSummary[key].iterations.length);
-                console.timeSummary[key].errMs = ((console.timeSummary[key].max - console.timeSummary[key].min) / 2).toFixed(2);
-                console.timeSummary[key].errPer = ((console.timeSummary[key].max - console.timeSummary[key].min) / 2 / console.timeSummary[key].avg * 100).toFixed(2);
-
-            } else {
-                throw String.Format('Advaced Logging Error: console.timeEnd("{0}") is not initialized with console.time("{0}")', key);
-            }
-        } else {
-            throw 'Advaced Logging Error: in console.timeEnd(key) parameter key is required';
-        }
-    };
-
-    console.timeSummary = function (key) {
-        if (key) {
-            if (console.timeSummary[key]) {
-                console.groupCollapsed(String.Format('{0} summary', key));
-                console.log(String.Format('{0} interations: {1} [{2}]', key, console.timeSummary[key].iterations.length, console.timeSummary[key].iterations));
-                console.log(String.Format('{0} min: {1} ms', key, console.timeSummary[key].min));
-                console.log(String.Format('{0} max: {1} ms', key, console.timeSummary[key].max));
-                console.log(String.Format('{0} average: {1} ms ± {2} ms ({3}%)', key, console.timeSummary[key].avg, console.timeSummary[key].errMs, console.timeSummary[key].errPer));
-                console.groupEnd(String.Format('{0} summary', key));
-            } else {
-                throw String.Format('Advaced Logging Error: there are no time report with key "{0}"', key);
-            }
-        } else {
-            throw 'Advaced Logging Error: in console.timeSummary(key) parameter key is required';
-        }
-    };
-
-    console.assert = function (exp, v) {
-        if ((exp !== undefined) && (v !== undefined)) {
-            if (!exp)
-                console.error(v);
-        } else {
-            throw 'Advaced Logging Error: in console.assert(exp,v) all parameters are required';
-        }
-    };
-
-    console.external = function (key, args, scope) {
-        if (key) {
-            console.groupCollapsed(String.Format('external {0}', key));
-            _log.external[key].apply(scope || window, args);
-            console.groupEnd(String.Format('external {0}', key));
-        } else {
-            throw 'Advaced Logging Error: in console.timeSummary(key) parameter key is required';
-        }
-    };
-
     _log = function (v) {
         console.log(v);
     };
@@ -108,5 +27,152 @@
         else
             _log[prop] = console[prop];
     }
+
+    _log.time = function (key) {
+        var t = (new Date()).getTime();
+        if (key) {
+            if (!_log.timeStat[key])
+                _log.timeStat[key] = { avg: undefined, iterations: [] };
+            _log.timeStat[key].lastStart = t;
+        } else {
+            throw 'Advaced Logging Error: in console.time(key) parameter key is required';
+        }
+    };
+
+    _log.timeEnd = function (key, opt_display) {
+        var t = (new Date()).getTime();
+        if (key) {
+            if (_log.timeStat[key] && _log.timeStat[key].lastStart) {
+                var gap = t - _log.timeStat[key].lastStart,
+                    sum = 0;
+
+                delete _log.timeStat[key].lastStart;
+
+                //check whether log, default true
+                if ((opt_display === undefined) ? true : opt_display)
+                    _log.log(String.Format('{0} {1}', key, gap));
+
+                _log.timeStat[key].iterations.push(gap);
+
+                for (var i = _log.timeStat[key].iterations.length - 1; i >= 0; i--) {
+                    sum += _log.timeStat[key].iterations[i];
+                    if ((_log.timeStat[key].min === undefined) || (gap < _log.timeStat[key].min))
+                        _log.timeStat[key].min = gap;
+                    if ((_log.timeStat[key].max === undefined) || (gap > _log.timeStat[key].max))
+                        _log.timeStat[key].max = gap;
+                }
+                _log.timeStat[key].avg = Math.round(sum / _log.timeStat[key].iterations.length);
+                _log.timeStat[key].errMs = ((_log.timeStat[key].max - _log.timeStat[key].min) / 2).toFixed(2);
+                _log.timeStat[key].errPer = ((_log.timeStat[key].max - _log.timeStat[key].min) / 2 / _log.timeStat[key].avg * 100).toFixed(2);
+
+            } else {
+                throw String.Format('Advaced Logging Error: console.timeEnd("{0}") is not initialized with console.time("{0}")', key);
+            }
+        } else {
+            throw 'Advaced Logging Error: in console.timeEnd(key) parameter key is required';
+        }
+    };
+
+    _log.timeStat = function (key) {
+        if (key) {
+            if (_log.timeStat[key]) {
+                console.groupCollapsed(String.Format('TIMER STAT: {0}', key));
+                _log.log(String.Format('interations: {0} [{1}]', _log.timeStat[key].iterations.length, _log.timeStat[key].iterations));
+                _log.log(String.Format('min: {0} ms', _log.timeStat[key].min));
+                _log.log(String.Format('max: {0} ms', _log.timeStat[key].max));
+                _log.log(String.Format('average: {0} ms ± {1} ms ({2}%)', _log.timeStat[key].avg, _log.timeStat[key].errMs, _log.timeStat[key].errPer));
+                console.groupEnd(String.Format('TIMER STAT: {0}', key));
+            } else {
+                throw String.Format('Advaced Logging Error: there are no time report with key "{0}"', key);
+            }
+        } else {
+            throw 'Advaced Logging Error: in console.timeStat(key) parameter key is required';
+        }
+    };
+
+    _log.assert = function (exp, v) {
+        if ((exp !== undefined) && (v !== undefined)) {
+            if (!exp)
+                _log.error(v);
+        } else {
+            throw 'Advaced Logging Error: in console.assert(exp,v) all parameters are required';
+        }
+    };
+
+    _log.error = function (v) {
+        if (v) {
+            console.error(v);
+            //if you are using Firebug Lite expand all group container
+            if (Firebug) {
+                $('#FirebugUI').contents().find('.logRow-error').each(function (i, el) {
+                    var fOpenParent = function ($el) {
+                        var $parentGroup = $el.parents('.logGroup');
+                        if ($parentGroup.length > 0) {
+                            $parentGroup.addClass('opened');
+                            fOpenParent($parentGroup);
+                        }
+                    };
+                    fOpenParent($(el));
+                });      
+            }
+        } else {
+            throw 'Advaced Logging Error: in console.error(v) parameter v is required';
+        }
+    };
+
+    _log.warn = function (v) {
+        if (v) {
+            console.warn(v);
+            //if you are using Firebug Lite expand all group container
+            if (Firebug) {
+                $('#FirebugUI').contents().find('.logRow-error').each(function (i, el) {
+                    var fOpenParent = function ($el) {
+                        var $parentGroup = $el.parents('.logGroup');
+                        if ($parentGroup.length > 0) {
+                            $parentGroup.addClass('opened');
+                            fOpenParent($parentGroup);
+                        }
+                    };
+                    fOpenParent($(el));
+                });
+            }
+        } else {
+            throw 'Advaced Logging Error: in console.warn(v) parameter v is required';
+        }
+    };
+
+    _log.group = function (v) {
+        if (v) {
+            console.group(String.Format('GROUP: {0}',v));
+        } else {
+            throw 'Advaced Logging Error: in console.group(v) parameter v is required';
+        }
+    };
+
+    _log.groupCollapsed = function (v) {
+        if (v) {
+            console.groupCollapsed(String.Format('GROUP: {0}', v));
+        } else {
+            throw 'Advaced Logging Error: in console.groupCollapsed(v) parameter v is required';
+        }
+    };
+
+    _log.groupEnd = function (v) {
+        if (v) {
+            console.groupEnd(String.Format('GROUP: {0}', v));
+        } else {
+            throw 'Advaced Logging Error: in console.groupEnd(v) parameter v is required';
+        }
+    };
+
+    _log.external = function (key, args, scope) {
+        if (key) {
+            console.groupCollapsed(String.Format('EXTERNAL: {0}', key));
+            _log.external[key].apply(scope || window, args);
+            console.groupEnd(String.Format('EXTERNAL: {0}', key));
+        } else {
+            throw 'Advaced Logging Error: in console.timeStat(key) parameter key is required';
+        }
+    };
 
 })();

@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>Advaced Logging Test Page</title>
-    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
+    <script type="text/javascript" src="//getfirebug.com/firebug-lite.js"></script>
     <script>window.Firebug || document.write('<script src="firebug-lite/build/firebug-lite.js"><\/script>')</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="jquery.min.js"><\/script>')</script>
     <script type="text/javascript" src="_log.js"></script>
     <script type="text/javascript" src="_logExt.js"></script>
     <script type="text/javascript">
@@ -19,12 +21,15 @@
 
         setTimeout(function () {
 
-            console.groupCollapsed('I\'m a group collapsed');
-            _log.assert(23 == 90, 'I\'m a failed comparison assertion');
+            _log.groupCollapsed('I\'m a group collapsed');
             _log.timeEnd('I\'m a timer');
-            console.groupEnd('I\'m a group collapsed');
+            _log.groupEnd('I\'m a group collapsed');
 
-            _log.external('I\'m external function', [1, 2, 3], location);
+            _log.groupCollapsed('I\'m a group collapsed but i opened because i contain a error');
+            _log.assert(23 == 90, 'I\'m a failed comparison assertion');
+            _log.groupEnd('I\'m a group collapsed but i opened because i contain a error');
+
+            _log.external('I\'m external function', [1, 2, 3], { scope:'I\'am a scope'});
 
             _log.time('I\'m a timer');
 
@@ -32,7 +37,7 @@
 
                 //with the second parameter to false, the result did not show in console
                 _log.timeEnd('I\'m a timer', false);
-                _log.timeSummary('I\'m a timer');
+                _log.timeStat('I\'m a timer');
 
             }, 1400);
 
