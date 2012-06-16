@@ -3,7 +3,6 @@
 
     Function.prototype.bind = function (scope) {
         var _function = this;
-
         return function () {
             return _function.apply(scope, arguments);
         };
@@ -23,7 +22,7 @@
                 console.timeSummary[key] = { avg: undefined, iterations: [] };
             console.timeSummary[key].lastStart = t;
         } else {
-            console.warn('error in console.time(key): parameter key is required');
+            throw 'Advaced Logging Error: in console.time(key) parameter key is required';
         }
     };
 
@@ -54,21 +53,27 @@
                 console.timeSummary[key].errPer = ((console.timeSummary[key].max - console.timeSummary[key].min) / 2 / console.timeSummary[key].avg * 100).toFixed(2);
 
             } else {
-                console.warn(String.Format('error in console.timeEnd("{0}"): {0} is not initialized with console.time({0})', key));
+                throw String.Format('Advaced Logging Error: console.timeEnd("{0}") is not initialized with console.time("{0}")', key);
             }
         } else {
-            console.warn('error in console.timeEnd(key): parameter key is required');
+            throw 'Advaced Logging Error: in console.timeEnd(key) parameter key is required';
         }
     };
 
     console.timeSummary = function (key) {
-        if (console.timeSummary[key]) {
-            console.groupCollapsed(String.Format('{0} summary', key));
-            console.log(String.Format('{0} interations: {1} [{2}]', key, console.timeSummary[key].iterations.length, console.timeSummary[key].iterations));
-            console.log(String.Format('{0} min: {1} ms', key, console.timeSummary[key].min));
-            console.log(String.Format('{0} max: {1} ms', key, console.timeSummary[key].max));
-            console.log(String.Format('{0} average: {1} ms ± {2} ms ({3}%)', key, console.timeSummary[key].avg, console.timeSummary[key].errMs, console.timeSummary[key].errPer));
-            console.groupEnd(String.Format('{0} summary', key));
+        if (key) {
+            if (console.timeSummary[key]) {
+                console.groupCollapsed(String.Format('{0} summary', key));
+                console.log(String.Format('{0} interations: {1} [{2}]', key, console.timeSummary[key].iterations.length, console.timeSummary[key].iterations));
+                console.log(String.Format('{0} min: {1} ms', key, console.timeSummary[key].min));
+                console.log(String.Format('{0} max: {1} ms', key, console.timeSummary[key].max));
+                console.log(String.Format('{0} average: {1} ms ± {2} ms ({3}%)', key, console.timeSummary[key].avg, console.timeSummary[key].errMs, console.timeSummary[key].errPer));
+                console.groupEnd(String.Format('{0} summary', key));
+            } else {
+                throw String.Format('Advaced Logging Error: there are no time report with key "{0}"', key);
+            }
+        } else {
+            throw 'Advaced Logging Error: in console.timeSummary(key) parameter key is required';
         }
     };
 
@@ -77,14 +82,18 @@
             if (!exp)
                 console.error(v);
         } else {
-            console.warn('error in console.assert(exp,v): parameters exp and v are required');
+            throw 'Advaced Logging Error: in console.assert(exp,v) all parameters are required';
         }
     };
 
     console.external = function (key, args, scope) {
-        console.groupCollapsed(String.Format('external {0}', key));
-        _log.external[key].apply(scope || window, args);
-        console.groupEnd(String.Format('external {0}', key));
+        if (key) {
+            console.groupCollapsed(String.Format('external {0}', key));
+            _log.external[key].apply(scope || window, args);
+            console.groupEnd(String.Format('external {0}', key));
+        } else {
+            throw 'Advaced Logging Error: in console.timeSummary(key) parameter key is required';
+        }
     };
 
     _log = function (v) {

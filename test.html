@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Advaced Logging Test Page</title>
-    <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>
     <script>window.Firebug || document.write('<script src="firebug-lite/build/firebug-lite.js"><\/script>')</script>
-    <script type="text/javascript" src="_log-min.js"></script>
+    <script type="text/javascript" src="_log.js"></script>
     <script type="text/javascript" src="_logExt.js"></script>
     <script type="text/javascript">
 
@@ -14,15 +14,13 @@
         _log.assert(23 == 90, 'I\'m a failed comparison assertion');
         _log.assert(23 == 23, 'I\'m a approved comparison assertion');
         _log.groupEnd('I\'m a group expandend');
-
-        //test mishandling, miss key;
-        _log.time();
-
+        
         _log.time('I\'m a timer');
 
         setTimeout(function () {
 
             console.groupCollapsed('I\'m a group collapsed');
+            _log.assert(23 == 90, 'I\'m a failed comparison assertion');
             _log.timeEnd('I\'m a timer');
             console.groupEnd('I\'m a group collapsed');
 
