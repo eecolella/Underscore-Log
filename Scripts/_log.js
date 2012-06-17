@@ -222,24 +222,15 @@
         $uLog.appendTo($eecBar);
 
         (function (currentVersion) {
-                //$.ajax({
-                //    url: 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?',
-                //    dataType: "text",
-                //    success: function (txt) {
-                //        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
-                //            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
-                //    },
-                //    error: function (jqXHR, textStatus, errorThrown) {
-                //        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
-                //    }
-                //});
 
-                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt?callback=?", function (data) {
-                    $('body').append('getjson txt' + data);
-                });
-                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?", function (data) {
-                    $('body').append('get json json' + data);
-                });
+            //var headID = document.getElementsByTagName("head")[0];
+            //var jsQUnit = document.createElement('script');
+            //jsQUnit.type = 'text/javascript';
+            //jsQUnit.src = folderQUnitLauncher + 'qunit.js';
+            //headID.appendChild(jsQUnit);
+
+            //if (+currentVersion.replace('.', '') < +_log.version('.', ''))
+            //    _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
 
         })('0.9.0');
     });
