@@ -252,6 +252,9 @@
                 $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?", function (data) {
                     $('body').append('getjson txt' + data);
                 });
+                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/v2.txt?callback=?", function (data) {
+                    $('body').append('getjson txt' + data);
+                });
 
         })('0.9.0');
     });
