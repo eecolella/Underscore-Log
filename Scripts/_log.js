@@ -9,7 +9,7 @@
             Firebug.chrome.close();
 
     });
-    var $gen = $('<div class="general clearfix"><img class="icon" src="_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
+    var $gen = $('<div class="general clearfix"><img class="icon" src="Styles/_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
     var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
     var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
 
@@ -103,13 +103,13 @@
     };
 
     _log.assert = function (exp, v, opt_mode) {
-        
+
         if ((exp !== undefined) && (v !== undefined)) {
             if (!exp) {
                 if (opt_mode == 'warn')
                     _log.warn(v);
                 else
-                    _log.error(v);                       
+                    _log.error(v);
             }
         } else {
             throw 'Advaced Logging Error: in console.assert(exp,v) all parameters are required';
@@ -220,7 +220,37 @@
         }
 
         $uLog.appendTo($eecBar);
-        
+
+
+
+        (function (currentVersion) {
+            var headID = document.getElementsByTagName("head")[0];
+            var verJs = document.createElement('script');
+            verJs.type = 'text/javascript';
+            verJs.src = '//raw.github.com/eeColella/Underscore-Log/master/version.js';
+            verJs.onload = function () {
+                try {
+                    if (gitVersion && (+currentVersion.replace('.', '') < +gitVersion().replace('.', '')))
+                        _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
+                }
+                catch (err) {
+                    _log.warn('Impossible to check the version of Underscore Log');
+                }
+            };
+            headID.appendChild(verJs);
+
+        })('0.9.0');
+
+
+        //$.getScript('//raw.github.com/eeColella/Underscore-Log/master/version.js')
+        //.done(function (script, textStatus) {
+        //    _log.info(textStatus);
+        //})
+        //.fail(function (jqxhr, settings, exception) {
+        //    _log.info("Triggered ajaxError handler.");
+        //});
+
     });
+
 
 })(jQuery);

@@ -4,13 +4,13 @@ Underscore Log
 
 ----------------------------------------------------------------------------
 
-##Goal
+#Goal
 
 Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
 
 ----------------------------------------------------------------------------
 
-##Features
+#Features
 
 #### 1.0.0 v
 <ul>
@@ -24,7 +24,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 ----------------------------------------------------------------------------
 
-##Docs
+#Docs
 
 ####_log( v )
 > Prints in console a simple string
@@ -42,7 +42,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > Stops a timer created by a call to <b>console.time(key)</b> and (by default) prints the time elapsed
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
-> <li><b>show</b>: a optional Bool that specifies if the result of timer is to be printed in console, by default this is true</li>
+> <li><b>show</b>: a optional Bool that specifies if the result of timer is to be printed in console, by <b>default</b> this is true</li>
 > </ul>
 
 ####_log.timeStat( key )
@@ -55,6 +55,6 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > Tests that an expression is true. If not, it will write a error (or warn) message to the console
 > <ul>
 > <li><b>exp</b>: a Bool or any type that will be evaluated</li>
-> <li><b>exp</b>: a String that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
-> <li><b>exp</b>: a String indicating whether a print a error or a warn, by default print a error, pass 'warn' for print a warn</li>
+> <li><b>v</b>: a String that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
+> <li><b>mode</b>: a String indicating whether a print a error or a warn, by <b>default</b> print a error, pass 'warn' for print a warn</li>
 > </ul>
