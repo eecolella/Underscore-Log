@@ -16,7 +16,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 <ul>
 <li>created a <b>alias</b> for a specific features to Underscore Log: _log</li>
 <li><b>wrapped</b> the ripetitive console.log() in _log()</li>
-<li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide <b>statics</b> through _log.timeStat()</li>
+<li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide <b>statistics</b> through _log.timeStat()</li>
 <li>the collapsed group are <b>auto opened</b> if they contain error or warn</li>
 <li>through _log.external() you can implement a <b>complex control code</b> in an external file: _logExt.js</li>
 <li>created a <b>minimal</b> ui which allows the control errors and warns even when Firebug Lite is closed</li>
@@ -67,3 +67,11 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > <li><b>args</b>: an optional Array that specifying the arguments with which external function should be called</li>
 > <li><b>scope</b>: an optional Object indicating the <b>this</b> provided for the external function</li>
 > </ul>
+
+----------------------------------------------------------------------------
+
+#Holes Known
+
+<ul>
+<li>if the Firebug Lite console is closed while being fired the logs they will not ordained (fixing in progress)</li>
+</ul>
