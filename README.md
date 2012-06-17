@@ -4,13 +4,13 @@ Underscore Log
 
 ----------------------------------------------------------------------------
 
-###<b>Goal</b>
+##Goal
 
 Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
 
 ----------------------------------------------------------------------------
 
-###Features
+##Features
 
 #### 1.0.0 v
 <ul>
@@ -24,7 +24,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 ----------------------------------------------------------------------------
 
-###Docs
+##Docs
 
 ####_log( v )
 > It prints in console a simple string
