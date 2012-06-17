@@ -1,7 +1,7 @@
 Underscore Log
 ==============
 
-Cross Browser advaced logging with Underscore Log and Firebug Lite
+####Cross Browser advaced logging with Underscore Log and Firebug Lite
 
 ----------------------------------------------------------------------------
 
@@ -28,27 +28,27 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 #Docs
 
 ####_log( v )
-<pre>
-It's print in console a simple string
-<ul>
-<li><b>v</b>: a String that is printed in console</li>
-</ul>
-</pre>
+> It prints in console a simple string
+> <ul>
+> <li><b>v</b>: a String that is printed in console</li>
+> </ul>
 
 ####_log.time( key )
-> It initialize the timer
-<code>
+> It initializes the timer
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
-</code>
-
 
 ####_log.timeEnd( key [,show] )
-<pre><code>
-It ends the timer and (by default) print in console th result of timer
-<ul>
-<li><b>key</b>: a String that identifies the timer</li>
-<li><b>show</b>: a Bool that specifies if the result of timer is to be printed in console, by default this is true</li>
-</ul>
-</code></pre>
+> It ends the timer and (by default) print in console th result of timer
+> <ul>
+> <li><b>key</b>: a String that identifies the timer</li>
+> <li><b>show</b>: a Bool that specifies if the result of timer is to be printed in console, by default this is true</li>
+> </ul>
+
+
+####_log.timeStat( key )
+> It prints the statics of timer
+> <ul>
+> <li><b>key</b>: a String that identifies the timer</li>
+> </ul>
