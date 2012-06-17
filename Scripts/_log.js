@@ -222,38 +222,23 @@
         $uLog.appendTo($eecBar);
 
         (function (currentVersion) {
-                $.ajax({
-                    url: 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?',
-                    dataType: "text",
-                    success: function (txt) {
-                        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
-                            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
-                    }
-                });
+                //$.ajax({
+                //    url: 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?',
+                //    dataType: "text",
+                //    success: function (txt) {
+                //        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
+                //            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
+                //    },
+                //    error: function (jqXHR, textStatus, errorThrown) {
+                //        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
+                //    }
+                //});
 
-                $.get("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt", function (data) {
-                    $('body').append('get txt' + data);
-                });
-                $.get("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json", function (data) {
-                    $('body').append('get json' + data);
-                });
-                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt", function (data) {
-                    $('body').append('getjson txt' + data);
-                });
-                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json", function (data) {
-                    $('body').append('getjson txt' + data);
-                });
                 $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt?callback=?", function (data) {
                     $('body').append('getjson txt' + data);
                 });
                 $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?", function (data) {
-                    $('body').append('getjson txt' + data);
-                });
-                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/v2.txt?callback=?", function (data) {
-                    $('body').append('getjson txt' + data);
+                    $('body').append('get json json' + data);
                 });
 
         })('0.9.0');
