@@ -223,7 +223,7 @@
 
         (function (currentVersion) {
                 $.ajax({
-                    url: 'Scripts/version.txt',
+                    url: 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?',
                     dataType: "text",
                     success: function (txt) {
                         if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
@@ -234,13 +234,22 @@
                     }
                 });
 
-                $.get("Scripts/version.txt", function (data) {
+                $.get("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt", function (data) {
                     $('body').append('get txt' + data);
                 });
-                $.get("Scripts/version.json", function (data) {
+                $.get("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json", function (data) {
                     $('body').append('get json' + data);
                 });
-                $.getJSON("Scripts/version.txt", function (data) {
+                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt", function (data) {
+                    $('body').append('getjson txt' + data);
+                });
+                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json", function (data) {
+                    $('body').append('getjson txt' + data);
+                });
+                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt?callback=?", function (data) {
+                    $('body').append('getjson txt' + data);
+                });
+                $.getJSON("https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.json?callback=?", function (data) {
                     $('body').append('getjson txt' + data);
                 });
 
