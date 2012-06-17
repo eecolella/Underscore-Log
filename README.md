@@ -1,10 +1,10 @@
 Underscore Log
 ==============
-####Cross Browser advaced logging with Underscore Log and Firebug Lite
+<b>Cross Browser advaced logging with Underscore Log and Firebug Lite</b>
 
 ----------------------------------------------------------------------------
 
-###Goal
+###<b>Goal</b>
 
 Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
 
