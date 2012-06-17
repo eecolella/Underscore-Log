@@ -221,36 +221,19 @@
 
         $uLog.appendTo($eecBar);
 
-
-
         (function (currentVersion) {
-            var headID = document.getElementsByTagName("head")[0];
-            var verJs = document.createElement('script');
-            verJs.type = 'text/javascript';
-            verJs.src = '//raw.github.com/eeColella/Underscore-Log/master/version.js';
-            verJs.onload = function () {
-                try {
-                    if (gitVersion && (+currentVersion.replace('.', '') < +gitVersion().replace('.', '')))
-                        _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
-                }
-                catch (err) {
-                    _log.warn('Impossible to check the version of Underscore Log');
-                }
-            };
-            headID.appendChild(verJs);
-
+                $.ajax({
+                    url: '/Scripts/version.txt',
+                    dataType: "text",
+                    success: function (txt) {
+                        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
+                            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
+                    }
+                });
         })('0.9.0');
-
-
-        //$.getScript('//raw.github.com/eeColella/Underscore-Log/master/version.js')
-        //.done(function (script, textStatus) {
-        //    _log.info(textStatus);
-        //})
-        //.fail(function (jqxhr, settings, exception) {
-        //    _log.info("Triggered ajaxError handler.");
-        //});
-
     });
-
 
 })(jQuery);
