@@ -222,17 +222,36 @@
         $uLog.appendTo($eecBar);
 
         (function (currentVersion) {
-                $.ajax({
-                    url: '/Scripts/version.txt',
-                    dataType: "text",
-                    success: function (txt) {
-                        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
-                            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
-                    }
-                });
+            //$.getJSON('Scripts/version.txt', function (json) {
+            //    _log('yeahhhhhhhhhhhhhhhhhhhh')
+            //});
+
+            //$.ajax({
+            //    url: 'Scripts/version.json?callback=?',
+            //    dataType: 'jsonp',
+            //    success: function (j) {
+            //        _log.error('yeahhhhhhhhhhhhhhhhhhhh');
+            //    }
+            //});
+
+            $.get("Scripts/version.json", function (j) {
+                        _log.error('yeahhhhhhhhhhhhhhhhhhhh');
+                    })
+
+            //$.ajax({
+            //    //url: 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.txt',
+            //    url: '/Scripts/version.json',
+            //    dataType: "json",
+            //    //jsonp: 'jsonp',
+            //    //crossDomain: true,
+            //    success: function (txt) {
+            //        if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
+            //            _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
+            //    },
+            //    error: function (jqXHR, textStatus, errorThrown) {
+            //        _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
+            //    }
+            //});
         })('0.9.0');
     });
 
