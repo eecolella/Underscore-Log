@@ -223,7 +223,7 @@
 
         (function (currentVersion) {
                 $.ajax({
-                    url: '/Scripts/version.txt',
+                    url: 'Scripts/version.txt',
                     dataType: "text",
                     success: function (txt) {
                         if (+currentVersion.replace('.', '') < +txt.replace('.', ''))
@@ -233,6 +233,17 @@
                         _log.warn('Impossible to check the version of Underscore Log: ' + errorThrown);
                     }
                 });
+
+                $.get("Scripts/version.txt", function (data) {
+                    $('body').append('get txt' + data);
+                });
+                $.get("Scripts/version.json", function (data) {
+                    $('body').append('get json' + data);
+                });
+                $.getJSON("Scripts/version.txt", function (data) {
+                    $('body').append('getjson txt' + data);
+                });
+
         })('0.9.0');
     });
 
