@@ -6,7 +6,7 @@ Underscore Log
 
 #Goal
 
-Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production
+Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production. To accomplish this Underscrore Log is helped by Firebug Lite, using this basic functions, fixing some and adding others.
 
 ----------------------------------------------------------------------------
 
@@ -14,12 +14,13 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 #### 1.0.0 v
 <ul>
-<li>created a alias for a specific features to Underscore Log: _log</li>
-<li>wrapped the ripetitive console.log() in _log()</li>
-<li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide statics through _log.timeStat()</li>
-<li>the collapsed group are auto opened if they contain error or warn</li>
-<li>through _log.external() you can implement a complex control code in an external file: _logExt.js</li>
-<li>created a minimal ui which allows the control errors and warns even when Firebug Lite is closed</li>
+<li>created a <b>alias</b> for a specific features to Underscore Log: _log</li>
+<li><b>wrapped</b> the ripetitive console.log() in _log()</li>
+<li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide <b>statics</b> through _log.timeStat()</li>
+<li>the collapsed group are <b>auto opened</b> if they contain error or warn</li>
+<li>through _log.external() you can implement a <b>complex control code</b> in an external file: _logExt.js</li>
+<li>created a <b>minimal</b> ui which allows the control errors and warns even when Firebug Lite is closed</li>
+<li><b>auto check</b> itself if there is a new version</li>
 </ul>
 
 ----------------------------------------------------------------------------
@@ -57,4 +58,12 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > <li><b>exp</b>: a Bool or any type that will be evaluated</li>
 > <li><b>v</b>: a String that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
 > <li><b>mode</b>: a String indicating whether a print a error or a warn, by <b>default</b> print a error, pass 'warn' for print a warn</li>
+> </ul>
+
+####_log.external( key [,args] [,scope] )
+> Calls a external function in _logExt.js, allowing you to write complex code of logging
+> <ul>
+> <li><b>key</b>: a String that identifies the external function in _logExt.js</li>
+> <li><b>args</b>: an optional Array that specifying the arguments with which external function should be called</li>
+> <li><b>scope</b>: an optional Object indicating the <b>this</b> provided for the external function</li>
 > </ul>

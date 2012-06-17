@@ -1,17 +1,20 @@
 ﻿
 (function ($) {
 
-    var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function () {
-        var $iFrameFb = $('#FirebugUI');
-        if (($iFrameFb[0].style.visibility == 'hidden') || ($iFrameFb.attr('allowtransparency') == 'true'))
-            Firebug.chrome.open();
-        else
-            Firebug.chrome.close();
+    var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function (e) {
+        if (!$(e.target).is('a')) {
+            var $iFrameFb = $('#FirebugUI');
+            if (($iFrameFb[0].style.visibility == 'hidden') || ($iFrameFb.attr('allowtransparency') == 'true'))
+                Firebug.chrome.open();
+            else
+                Firebug.chrome.close();
+        }
 
     });
     var $gen = $('<div class="general clearfix"><img class="icon" src="Styles/_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
     var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
     var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
+    var $update = $('<div class="update clearfix hidden"><img class="icon" src="Styles/download.png"><div class="info hidden"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
 
     Function.prototype.bind = function (scope) {
         var _function = this;
@@ -186,10 +189,10 @@
         }
     };
 
-    _log.external = function (key, args, scope) {
+    _log.external = function (key, opt_args, opt_scope) {
         if (key) {
             console.groupCollapsed(String.Format('EXTERNAL: {0}', key));
-            _log.external[key].apply(scope || window, args);
+            _log.external[key].apply(opt_scope || window, opt_args);
             console.groupEnd(String.Format('EXTERNAL: {0}', key));
         } else {
             throw 'Advaced Logging Error: in console.timeStat(key) parameter key is required';
@@ -204,7 +207,7 @@
             var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
                 var $this = $(this);
                 $this.stop().animate({
-                    'width': '226px'
+                    'width': '230px'
                 }, 150, 'linear', function () {
                     $this.find('.info').css('opacity', 0).removeClass('hidden').animate({
                         'opacity': 1
@@ -223,14 +226,16 @@
 
         (function (currentVersion) {
 
-            //var headID = document.getElementsByTagName("head")[0];
-            //var jsQUnit = document.createElement('script');
-            //jsQUnit.type = 'text/javascript';
-            //jsQUnit.src = folderQUnitLauncher + 'qunit.js';
-            //headID.appendChild(jsQUnit);
+            var headID = document.getElementsByTagName("head")[0];
+            var _logVer = document.createElement('script');
+            _logVer.type = 'text/javascript';
+            _logVer.src = 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js';
+            _logVer.onload = function () {
+                if (+currentVersion.replace('.', '') < +_log.version.replace('.', ''))
+                    $update.removeClass('hidden');
+            };
+            document.getElementsByTagName("head")[0].appendChild(_logVer);
 
-            //if (+currentVersion.replace('.', '') < +_log.version('.', ''))
-            //    _log.warn('A new version of Underscore Log is avaible on https://github.com/eeColella/Underscore-Log');
 
         })('0.9.0');
     });

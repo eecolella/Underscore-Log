@@ -2975,7 +2975,8 @@ position. if so, override it at chrome.js initialization when creating the div *
 }
 
 .logRow-warn {
-    background-color: cyan;
+    color: #7C4F00;
+    background-color: #FFF36C;
     background-image: url(warningIcon.png) !important;
     background-image: url(warningIcon.gif);
 }
