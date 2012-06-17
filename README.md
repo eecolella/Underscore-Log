@@ -70,7 +70,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 ----------------------------------------------------------------------------
 
-#Holes Known
+#Bugs Known
 
 <ul>
 <li>if the Firebug Lite console is closed while being fired the logs they will not ordained (fixing in progress)</li>
