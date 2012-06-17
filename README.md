@@ -27,26 +27,34 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 ##Docs
 
 ####_log( v )
-> It prints in console a simple string
+> Prints in console a simple string
 > <ul>
 > <li><b>v</b>: a String that is printed in console</li>
 > </ul>
 
 ####_log.time( key )
-> It initializes the timer
+> Creates a new the timer, call <b>_log.timeEnd(key)</b> with the same key to stop the timer and print the time elapsed
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
 
 ####_log.timeEnd( key [,show] )
-> It ends the timer and (by default) print in console the result of timer
+> Stops a timer created by a call to <b>console.time(key)</b> and (by default) prints the time elapsed
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > <li><b>show</b>: a optional Bool that specifies if the result of timer is to be printed in console, by default this is true</li>
 > </ul>
 
 ####_log.timeStat( key )
-> It prints the statics of timer
+> Prints the statics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
+> </ul>
+
+####_log.assert( exp, v [,mode] )
+> Tests that an expression is true. If not, it will write a error (or warn) message to the console
+> <ul>
+> <li><b>exp</b>: a Bool or any type that will be evaluated</li>
+> <li><b>exp</b>: a String that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
+> <li><b>exp</b>: a String indicating whether a print a error or a warn, by default print a error, pass 'warn' for print a warn</li>
 > </ul>
