@@ -37,9 +37,11 @@ It's print in console a simple string
 
 ####_log.time( key )
 > It initialize the timer
+<code>
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
+</code>
 
 
 ####_log.timeEnd( key [,show] )
