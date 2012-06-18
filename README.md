@@ -12,7 +12,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 #Features
 
-#### 1.0.0 v
+#### 0.1.0 v
 <ul>
 <li>created a <b>alias</b> for a specific features to Underscore Log: _log</li>
 <li><b>wrapped</b> the ripetitive console.log() in _log()</li>

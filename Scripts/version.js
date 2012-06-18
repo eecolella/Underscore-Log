@@ -1,1 +1,1 @@
-﻿_log.version = '1.0.0';
+﻿_log.version = '0.1.0';
