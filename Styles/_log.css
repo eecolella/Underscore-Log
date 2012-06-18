@@ -34,6 +34,12 @@
   zoom: 1;
   *display: inline; }
 
+#uLog .icon.uLog {
+  background: url("_log.png") no-repeat; }
+
+#uLog .icon.update {
+  background: url("download.png") no-repeat; }
+
 #uLog .icon.text {
   line-height: 26px;
   text-align: center;

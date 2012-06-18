@@ -11,10 +11,10 @@
         }
 
     });
-    var $gen = $('<div class="general clearfix"><img class="icon" src="Styles/_log.png"><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
+    var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="info hidden">Underscore Log</div></div>').appendTo($uLog);
     var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="info hidden">Errors</div></div>').appendTo($uLog);
     var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="info hidden">Warnings</div></div>').appendTo($uLog);
-    var $update = $('<div class="update clearfix hidden"><img class="icon" src="Styles/download.png"><div class="info hidden"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
+    var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="info hidden"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
 
     Function.prototype.bind = function (scope) {
         var _function = this;
@@ -225,7 +225,6 @@
         $uLog.appendTo($eecBar);
 
         (function (currentVersion) {
-
             var headID = document.getElementsByTagName("head")[0];
             var _logVer = document.createElement('script');
             _logVer.type = 'text/javascript';
@@ -235,9 +234,7 @@
                     $update.removeClass('hidden');
             };
             document.getElementsByTagName("head")[0].appendChild(_logVer);
-
-
-        })('0.9.0');
+        })('0.1.0');
     });
 
 })(jQuery);
