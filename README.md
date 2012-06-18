@@ -28,32 +28,32 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 #Docs
 
 ####_log( v )
-> Prints a simple message  to the console
+> Prints a simple message  to the console (created by Underscore Log)
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
 ####_log.time( key )
-> Creates a new the timer, call <b>_log.timeEnd(key)</b> with the same key to stop the timer and print the time elapsed
+> Creates a new the timer, call <b>_log.timeEnd(key)</b> with the same key to stop the timer and print the time elapsed (enhanced by Underscore Log)
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
 
 ####_log.timeEnd( key [,show] )
-> Stops a timer created by a call to <b>console.time(key)</b> and (by default) prints the time elapsed
+> Stops a timer created by a call to <b>console.time(key)</b> and (by default) prints the time elapsed (enhanced by Underscore Log)
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > <li><b>show</b>: a optional Bool that specifies if the result of timer is to be printed in console, by <b>default</b> this is true</li>
 > </ul>
 
 ####_log.timeStat( key )
-> Prints the statistics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
+> Prints the statistics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives (created by Underscore Log)
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
 
 ####_log.assert( exp, v [,mode] )
-> Tests that an expression is true. If not, it will write a error (or warn) message to the console
+> Tests that an expression is true. If not, it will write a error (or warn) message to the console (fixed by Underscore Log)
 > <ul>
 > <li><b>exp</b>: a Bool or any type that will be evaluated</li>
 > <li><b>v</b>: a Object that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
@@ -61,7 +61,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.external( key [,args] [,scope] )
-> Calls a external function in _logExt.js, allowing you to write complex code of logging
+> Calls a external function in _logExt.js, allowing you to write complex code of logging (created by Underscore Log)
 > <ul>
 > <li><b>key</b>: a String that identifies the external function in _logExt.js</li>
 > <li><b>args</b>: an optional Array that specifying the arguments with which external function should be called</li>
@@ -69,25 +69,31 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.info( v )
-> Prints a message to the console with the visual "info" icon 
+> Prints a message to the console with the visual "info" icon (inherited by Firebug Lite)
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
 ####_log.warn( v )
-> Prints a message to the console with the visual "warning" icon and color coding 
+> Prints a message to the console with the visual "warning" icon and color coding (inherited by Firebug Lite)
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
 ####_log.error( v )
-> Prints a message to the console with the visual "error" icon and color coding
+> Prints a message to the console with the visual "error" icon and color coding (inherited by Firebug Lite)
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
-####_log.clear()
+####_log.clear() (inherited by Firebug Lite)
 > Clears the console.
+
+####_log.dir( v )
+> Prints an interactive listing of all properties of the object. (inherited by Firebug Lite)
+> <ul>
+> <li><b>v</b>: a Object that is printed in console</li>
+> </ul>
 
 ----------------------------------------------------------------------------
 
@@ -95,4 +101,5 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 <ul>
 <li>if the Firebug Lite console is closed while being fired the logs they will not ordained (fixing in progress)</li>
+<li>auto check itself feature not works in IE browsers</li>
 </ul>
