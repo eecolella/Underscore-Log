@@ -28,9 +28,9 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 #Docs
 
 ####_log( v )
-> Prints in console a simple string
+> Prints a simple message  to the console
 > <ul>
-> <li><b>v</b>: a String that is printed in console</li>
+> <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
 ####_log.time( key )
@@ -47,7 +47,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.timeStat( key )
-> Prints the statics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
+> Prints the statistics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
@@ -56,7 +56,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > Tests that an expression is true. If not, it will write a error (or warn) message to the console
 > <ul>
 > <li><b>exp</b>: a Bool or any type that will be evaluated</li>
-> <li><b>v</b>: a String that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
+> <li><b>v</b>: a Object that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
 > <li><b>mode</b>: a String indicating whether a print a error or a warn, by <b>default</b> print a error, pass 'warn' for print a warn</li>
 > </ul>
 
@@ -67,6 +67,27 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > <li><b>args</b>: an optional Array that specifying the arguments with which external function should be called</li>
 > <li><b>scope</b>: an optional Object indicating the <b>this</b> provided for the external function</li>
 > </ul>
+
+####_log.info( v )
+> Prints a message to the console with the visual "info" icon 
+> <ul>
+> <li><b>v</b>: a Object that is printed in console</li>
+> </ul>
+
+####_log.warn( v )
+> Prints a message to the console with the visual "warning" icon and color coding 
+> <ul>
+> <li><b>v</b>: a Object that is printed in console</li>
+> </ul>
+
+####_log.error( v )
+> Prints a message to the console with the visual "error" icon and color coding
+> <ul>
+> <li><b>v</b>: a Object that is printed in console</li>
+> </ul>
+
+####_log.clear()
+> Clears the console.
 
 ----------------------------------------------------------------------------
 
