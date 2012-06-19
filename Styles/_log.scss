@@ -72,6 +72,7 @@
     font-family:'Segoe UI', sans-serif;  
 }
 
+
 #uLog .error
 {
 	padding-top:5px;
@@ -87,15 +88,19 @@
 	color:yellow;
 }
 
-#uLog .info
+#uLog .label
 {
 	float:left;
 	width: 199px;
 	height: 26px;
 	line-height: 26px;
 	padding-left:5px;
-	font-size: 21px;
+	font-size: 15px;
 	@include inlineBlock();
+}
+#uLog .general .label
+{
+	font-size:21px;
 }
 
 #uLog a

@@ -56,17 +56,20 @@
 #uLog .warn {
   color: yellow; }
 
-#uLog .info {
+#uLog .label {
   float: left;
   width: 199px;
   height: 26px;
   line-height: 26px;
   padding-left: 5px;
-  font-size: 21px;
+  font-size: 15px;
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   *display: inline; }
+
+#uLog .general .label {
+  font-size: 21px; }
 
 #uLog a {
   color: #ffffff; }
