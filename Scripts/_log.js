@@ -12,18 +12,7 @@
 
     var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function (e) {
         if (!$(e.target).is('a')) {
-            var $iFrameFb = $('#FirebugUI');
-            if (($iFrameFb[0].style.visibility == 'hidden') || ($iFrameFb.attr('allowtransparency') == 'true')) {
-                Firebug.chrome.open(function () {
-                    var currentStack = _log.stackLog;
-                    _log.clear();
-                    for (var i = 0, length = currentStack.length; i < length; i++)
-                        _log[currentStack[i][0]].apply(this, currentStack[i][1]);
-                });
-            }
-            else {
-                Firebug.chrome.close();
-            }
+            _log.toggle();
         }
     });
     var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label hidden">Underscore Log</div></div>').appendTo($uLog);
@@ -256,6 +245,42 @@
         }
     };
 
+    _log.open = function () {
+        var iFrameFb = document.getElementById('FirebugUI');
+        if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+            Firebug.chrome.open(function () {
+                var currentStack = _log.stackLog;
+                _log.clear();
+                for (var i = 0, length = currentStack.length; i < length; i++)
+                    _log[currentStack[i][0]].apply(this, currentStack[i][1]);
+            });
+        }
+    };
+
+    _log.close = function () {
+        var iFrameFb = document.getElementById('FirebugUI');
+        if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+        }
+        else {
+            Firebug.chrome.close();
+        }
+    };
+
+    _log.toggle = function () {
+        var iFrameFb = document.getElementById('FirebugUI');
+        if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+            Firebug.chrome.open(function () {
+                var currentStack = _log.stackLog;
+                _log.clear();
+                for (var i = 0, length = currentStack.length; i < length; i++)
+                    _log[currentStack[i][0]].apply(this, currentStack[i][1]);
+            });
+        }
+        else {
+            Firebug.chrome.close();
+        }
+    };
+
     _log.clear = function (v) {
         console.clear();
 
@@ -305,5 +330,6 @@
             document.getElementsByTagName("head")[0].appendChild(_logVer);
         })('0.2.0');
     });
+
 
 })(jQuery);

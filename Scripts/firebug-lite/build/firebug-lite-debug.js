@@ -11376,18 +11376,7 @@ var onGlobalKeyDown = function onGlobalKeyDown(event)
     
     if (keyCode == 123 /* F12 */ && (!isFirefox && !shiftKey || shiftKey && isFirefox))
     {
-        var iFrameFb = document.getElementById('FirebugUI');
-        if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
-            Firebug.chrome.open(function () {
-                var currentStack = _log.stackLog;
-                _log.clear();
-                for (var i = 0, length = currentStack.length; i < length; i++)
-                    _log[currentStack[i][0]].apply(this, currentStack[i][1]);
-            });
-        }
-        else {
-            Firebug.chrome.close();
-        }
+        _log.toggle();
 
         cancelEvent(event, true);
 

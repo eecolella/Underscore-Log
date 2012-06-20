@@ -102,13 +102,13 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.groupCollapsed( key )
-> Like <b>console.group()</b>, but the block is initially collapsed.
+> Like <b>console.group(key)</b>, but the block is initially collapsed.
 > <ul>
 > <li><b>key</b>: a String that identifies the block</li>
 > </ul>
 
 ####_log.groupEnd( key )
-> Closes the most recently opened block created by a call to <b>console.group()</b> or <b>console.groupCollapsed()</b>
+> Closes the most recently opened block created by a call to <b>console.group(key)</b> or <b>console.groupCollapsed(key)</b>
 > <ul>
 > <li><b>key</b>: a String that identifies the block</li>
 > </ul>
