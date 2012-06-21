@@ -11376,7 +11376,7 @@ var onGlobalKeyDown = function onGlobalKeyDown(event)
     
     if (keyCode == 123 /* F12 */ && (!isFirefox && !shiftKey || shiftKey && isFirefox))
     {
-        _log.toggle();
+        window['_' + 'log'].toggle();
 
         cancelEvent(event, true);
 

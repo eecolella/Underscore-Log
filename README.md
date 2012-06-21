@@ -18,7 +18,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 <li><b>wrapped</b> the ripetitive console.log() in _log()</li>
 <li>extendend the normal features to console.time(), now _log.time() stored all the iterations of itself to provide <b>statistics</b> through _log.timeStat()</li>
 <li>the collapsed group are <b>auto opened</b> if they contain error or warn</li>
-<li>through _log.external() you can implement a <b>complex control code</b> in an external file: _logExt.js</li>
+<li>through _log.external() you can implement a <b>complex control code</b> in an external file: underscoreLogExt.js</li>
 <li>created a <b>minimal</b> ui which allows the control errors and warns even when Firebug Lite is closed</li>
 <li><b>auto check</b> itself if there is a new version</li>
 <li>fixed a annoying bug inherited by Firebug Lite that if this console was closed the logs were printed messy and duplicates</li>
@@ -88,9 +88,9 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.external( key [,args] [,scope] )
-> Calls a external function in _logExt.js, allowing you to write complex code of logging
+> Calls a external function in underscoreLogExt.js, allowing you to write complex code of logging
 > <ul>
-> <li><b>key</b>: a String that identifies the external function in _logExt.js</li>
+> <li><b>key</b>: a String that identifies the external function in underscoreLogExt.js</li>
 > <li><b>args</b>: an optional Array that specifying the arguments with which external function should be called</li>
 > <li><b>scope</b>: an optional Object indicating the <b>this</b> provided for the external function</li>
 > </ul>

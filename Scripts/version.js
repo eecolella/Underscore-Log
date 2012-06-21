@@ -1,1 +1,1 @@
-﻿_log.version = '0.2.0';
+﻿window['_' +'log'].version = '0.2.0';

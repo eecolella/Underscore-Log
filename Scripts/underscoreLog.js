@@ -8,11 +8,11 @@
  *  
  **************************************************************/
 
-(function ($) {
+window['_' + 'log'] = (function ($) {
 
     var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function (e) {
         if (!$(e.target).is('a')) {
-            _log.toggle();
+            ulog.toggle();
         }
     });
     var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label hidden">Underscore Log</div></div>').appendTo($uLog);
@@ -20,51 +20,38 @@
     var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="label hidden">Warnings</div></div>').appendTo($uLog);
     var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="label hidden"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
 
-    Function.prototype.bind = function (scope) {
-        var _function = this;
-        return function () {
-            return _function.apply(scope, arguments);
-        };
+    //Function.prototype.bind
+    "undefined" === typeof Function.prototype.bind && (Function.prototype.bind = function (c) { for (var d = this, b = [], a = 1, e = arguments.length; a < e; a++) b.push(arguments[a]); return function () { return d.apply(c, b) } });
+    //String.Format
+    String.Format = function (a) { var b = arguments; return a.replace(/\{\d+?\}/g, function (a) { return b[+a.match(/\d/) + 1] }) };
+    //String.prototype.format
+    String.prototype.format = function () { var a = arguments; return this.replace(/\{\d+?\}/g, function (b) { return a[+b.match(/\d/)] }) };
+
+    var ulog = function (v) {
+        console.log(v);
+        ulog.stackLog.push(['log', [v]]);
     };
 
-    String.Format = function (str) {
-        for (var i = 0, length = arguments.length; i < length; i++) {
-            str = str.replace('{' + (i - 1) + '}', arguments[i]);
+    ulog.stackLog = [];
+
+    ulog.log = function (v) {
+        console.log(v);
+        ulog.stackLog.push(['log', [v]]);
+    }
+
+    ulog.info = function (v) {
+        if (v) {
+            console.info(v);
+            ulog.stackLog.push(['info', [v]]);
+        } else {
+            throw 'Underscore Log Error: in _' + 'log.info(v) parameter v is required';
         }
-        return str;
-    };
-
-    _log = function (v) {
-        console.log(v);
-        _log.stackLog.push(['log', [v]]);
-    };
-
-    // heritage by Firebug Lite
-    //for (var prop in console) {
-    //    if (console[prop] instanceof Function)
-    //        _log[prop] = function () {
-    //            return console[this].apply(this, arguments);
-    //        }.bind(prop);
-    //    else
-    //        _log[prop] = console[prop];
-    //}
-
-    _log.stackLog = [];
-
-    _log.log = function (v) {
-        console.log(v);
-        _log.stackLog.push(['log', [v]]);
     }
 
-    _log.info = function (v) {
-        console.info(v);
-        _log.stackLog.push(['info', [v]]);
-    }
-
-    _log.error = function (v) {
+    ulog.error = function (v) {
         if (v) {
             console.error(v);
-            _log.stackLog.push(['error', [v]]);
+            ulog.stackLog.push(['error', [v]]);
             var $errorRecap = $error.children('.icon.text');
             $errorRecap.text(+$errorRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
@@ -81,14 +68,14 @@
                 });
             }
         } else {
-            throw 'Advaced Logging Error: in console.error(v) parameter v is required';
+            throw 'Underscore Log Error: in _' + 'log.error(v) parameter v is required';
         }
     };
 
-    _log.warn = function (v) {
+    ulog.warn = function (v) {
         if (v) {
             console.warn(v);
-            _log.stackLog.push(['warn', [v]]);
+            ulog.stackLog.push(['warn', [v]]);
             var $warnRecap = $warn.children('.icon.text');
             $warnRecap.text(+$warnRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
@@ -105,159 +92,159 @@
                 });
             }
         } else {
-            throw 'Advaced Logging Error: in console.warn(v) parameter v is required';
+            throw 'Underscore Log Error: in _' + 'log.warn(v) parameter v is required';
         }
     };
 
-    _log.time = function (key) {
+    ulog.time = function (key) {
         var t = (new Date()).getTime();
         if (key) {
-            if (!_log.timeStats[key])
-                _log.timeStats[key] = { avg: undefined, iterations: [] };
-            _log.timeStats[key].lastStart = t;
+            if (!ulog.timeStats[key])
+                ulog.timeStats[key] = { avg: undefined, iterations: [] };
+            ulog.timeStats[key].lastStart = t;
         } else {
-            throw 'Advaced Logging Error: in _log.time(key) parameter key is required';
+            throw 'Underscore Log Error: in _' + 'log.time(key) parameter key is required';
         }
     };
 
-    _log.timeEnd = function (key, opt_show) {
+    ulog.timeEnd = function (key, opt_show) {
         var t = (new Date()).getTime();
         if (key) {
-            if (_log.timeStats[key] && _log.timeStats[key].lastStart) {
-                var gap = t - _log.timeStats[key].lastStart,
+            if (ulog.timeStats[key] && ulog.timeStats[key].lastStart) {
+                var gap = t - ulog.timeStats[key].lastStart,
                     sum = 0;
 
-                delete _log.timeStats[key].lastStart;
+                delete ulog.timeStats[key].lastStart;
 
                 //check whether log, default true
                 if ((opt_show === undefined) ? true : opt_show)
-                    _log.log(String.Format('{0} {1}', key, gap));
+                    ulog.log(String.Format('{0} {1}', key, gap));
 
-                _log.timeStats[key].iterations.push(gap);
+                ulog.timeStats[key].iterations.push(gap);
 
-                for (var i = _log.timeStats[key].iterations.length - 1; i >= 0; i--) {
-                    sum += _log.timeStats[key].iterations[i];
-                    if ((_log.timeStats[key].min === undefined) || (gap < _log.timeStats[key].min))
-                        _log.timeStats[key].min = gap;
-                    if ((_log.timeStats[key].max === undefined) || (gap > _log.timeStats[key].max))
-                        _log.timeStats[key].max = gap;
+                for (var i = ulog.timeStats[key].iterations.length - 1; i >= 0; i--) {
+                    sum += ulog.timeStats[key].iterations[i];
+                    if ((ulog.timeStats[key].min === undefined) || (gap < ulog.timeStats[key].min))
+                        ulog.timeStats[key].min = gap;
+                    if ((ulog.timeStats[key].max === undefined) || (gap > ulog.timeStats[key].max))
+                        ulog.timeStats[key].max = gap;
                 }
-                _log.timeStats[key].avg = Math.round(sum / _log.timeStats[key].iterations.length);
-                _log.timeStats[key].errMs = ((_log.timeStats[key].max - _log.timeStats[key].min) / 2).toFixed(2);
-                _log.timeStats[key].errPer = ((_log.timeStats[key].max - _log.timeStats[key].min) / 2 / _log.timeStats[key].avg * 100).toFixed(2);
+                ulog.timeStats[key].avg = Math.round(sum / ulog.timeStats[key].iterations.length);
+                ulog.timeStats[key].errMs = ((ulog.timeStats[key].max - ulog.timeStats[key].min) / 2).toFixed(2);
+                ulog.timeStats[key].errPer = ((ulog.timeStats[key].max - ulog.timeStats[key].min) / 2 / ulog.timeStats[key].avg * 100).toFixed(2);
 
             } else {
-                throw String.Format('Advaced Logging Error: _log.timeEnd("{0}") is not initialized with _log.time("{0}")', key);
+                throw String.Format('Underscore Log Error: _' + 'log.timeEnd("{0}") is not initialized with _' + 'log.time("{0}")', key);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.timeEnd(key) parameter key is required';
+            throw 'Underscore Log Error: in _' + 'log.timeEnd(key) parameter key is required';
         }
     };
 
-    _log.timeStats = function (key) {
+    ulog.timeStats = function (key) {
         if (key) {
-            if (_log.timeStats[key]) {
-                _log.groupCollapsed(key, 'TIMER STAT');
-                _log.stackLog.push(['groupCollapsed', [key]]);
+            if (ulog.timeStats[key]) {
+                ulog.groupCollapsed(key, 'TIMER STAT');
+                ulog.stackLog.push(['groupCollapsed', [key]]);
 
-                _log.log(String.Format('interations: {0} [{1}]', _log.timeStats[key].iterations.length, _log.timeStats[key].iterations));
-                _log.log(String.Format('min: {0} ms', _log.timeStats[key].min));
-                _log.log(String.Format('max: {0} ms', _log.timeStats[key].max));
-                _log.log(String.Format('average: {0} ms ± {1} ms ({2}%)', _log.timeStats[key].avg, _log.timeStats[key].errMs, _log.timeStats[key].errPer));
+                ulog.log(String.Format('interations: {0} [{1}]', ulog.timeStats[key].iterations.length, ulog.timeStats[key].iterations));
+                ulog.log(String.Format('min: {0} ms', ulog.timeStats[key].min));
+                ulog.log(String.Format('max: {0} ms', ulog.timeStats[key].max));
+                ulog.log(String.Format('average: {0} ms ± {1} ms ({2}%)', ulog.timeStats[key].avg, ulog.timeStats[key].errMs, ulog.timeStats[key].errPer));
 
-                _log.groupEnd(key, 'TIMER STAT');
-                _log.stackLog.push(['groupEnd', [key]]);
+                ulog.groupEnd(key, 'TIMER STAT');
+                ulog.stackLog.push(['groupEnd', [key]]);
             } else {
-                throw String.Format('Advaced Logging Error: there are no time reports with key "{0}"', key);
+                throw String.Format('Underscore Log Error: in _' + 'log.timeStats("{0}") there are no time reports with key "{0}"', key);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.timeStat(key) parameter key is required';
+            throw 'Underscore Log Error: in _' + 'log.timeStats(key) parameter key is required';
         }
     };
 
-    _log.assert = function (exp, v, opt_mode) {
+    ulog.assert = function (exp, v, opt_mode) {
 
         if ((exp !== undefined) && (v !== undefined)) {
             if (!exp) {
                 if (opt_mode == 'warn')
-                    _log.warn(v);
+                    ulog.warn(v);
                 else
-                    _log.error(v);
+                    ulog.error(v);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.assert(exp,v) all parameters are required';
+            throw 'Advaced Logging Error: in _' + 'log.assert(exp,v) all parameters are required';
         }
     };
 
-    _log.group = function (v, opt_prefix) {
+    ulog.group = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
                 console.group(String.Format('GROUP: {0}', v));
-                _log.stackLog.push(['group', [v]]);
+                ulog.stackLog.push(['group', [v]]);
             } else {
                 console.group(String.Format('{0}: {1}', opt_prefix, v));
-                _log.stackLog.push(['group', [v, opt_prefix]]);
+                ulog.stackLog.push(['group', [v, opt_prefix]]);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.group(v) parameter v is required';
+            throw 'Advaced Logging Error: in _' + 'log.group(v) parameter v is required';
         }
     };
 
-    _log.groupCollapsed = function (v, opt_prefix) {
+    ulog.groupCollapsed = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
                 console.groupCollapsed(String.Format('GROUP: {0}', v));
-                _log.stackLog.push(['groupCollapsed', [v]]);
+                ulog.stackLog.push(['groupCollapsed', [v]]);
             } else {
                 console.groupCollapsed(String.Format('{0}: {1}', opt_prefix, v));
-                _log.stackLog.push(['groupCollapsed', [v, opt_prefix]]);
+                ulog.stackLog.push(['groupCollapsed', [v, opt_prefix]]);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.groupCollapsed(v) parameter v is required';
+            throw 'Advaced Logging Error: in _' + 'log.groupCollapsed(v) parameter v is required';
         }
     };
 
-    _log.groupEnd = function (v, opt_prefix) {
+    ulog.groupEnd = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
                 console.groupEnd(String.Format('GROUP: {0}', v));
-                _log.stackLog.push(['groupEnd', [v]]);
+                ulog.stackLog.push(['groupEnd', [v]]);
             } else {
                 console.groupEnd(String.Format('{0}: {1}', opt_prefix, v));
-                _log.stackLog.push(['groupEnd', [v, opt_prefix]]);
+                ulog.stackLog.push(['groupEnd', [v, opt_prefix]]);
             }
         } else {
-            throw 'Advaced Logging Error: in _log.groupEnd(v) parameter v is required';
+            throw 'Advaced Logging Error: in _' + 'log.groupEnd(v) parameter v is required';
         }
     };
 
-    _log.external = function (key, opt_args, opt_scope) {
+    ulog.external = function (key, opt_args, opt_scope) {
         if (key) {
-            _log.groupCollapsed(key, 'EXTERNAL');
-            _log.stackLog.push(['groupCollapsed', [key]]);
+            ulog.groupCollapsed(key, 'EXTERNAL');
+            ulog.stackLog.push(['groupCollapsed', [key]]);
 
-            _log.external[key].apply(opt_scope || window, opt_args);
+            ulog.external[key].apply(opt_scope || window, opt_args);
 
-            _log.groupEnd(key, 'EXTERNAL');
-            _log.stackLog.push(['groupEnd', [key]]);
+            ulog.groupEnd(key, 'EXTERNAL');
+            ulog.stackLog.push(['groupEnd', [key]]);
         } else {
-            throw 'Advaced Logging Error: in _log.timeStat(key) parameter key is required';
+            throw 'Advaced Logging Error: in _' + 'log.timeStat(key) parameter key is required';
         }
     };
 
-    _log.open = function () {
+    ulog.open = function () {
         var iFrameFb = document.getElementById('FirebugUI');
         if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
             Firebug.chrome.open(function () {
-                var currentStack = _log.stackLog;
-                _log.clear();
+                var currentStack = ulog.stackLog;
+                ulog.clear();
                 for (var i = 0, length = currentStack.length; i < length; i++)
-                    _log[currentStack[i][0]].apply(this, currentStack[i][1]);
+                    ulog[currentStack[i][0]].apply(this, currentStack[i][1]);
             });
         }
     };
 
-    _log.close = function () {
+    ulog.close = function () {
         var iFrameFb = document.getElementById('FirebugUI');
         if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
         }
@@ -266,14 +253,14 @@
         }
     };
 
-    _log.toggle = function () {
+    ulog.toggle = function () {
         var iFrameFb = document.getElementById('FirebugUI');
         if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
             Firebug.chrome.open(function () {
-                var currentStack = _log.stackLog;
-                _log.clear();
+                var currentStack = ulog.stackLog;
+                ulog.clear();
                 for (var i = 0, length = currentStack.length; i < length; i++)
-                    _log[currentStack[i][0]].apply(this, currentStack[i][1]);
+                    ulog[currentStack[i][0]].apply(this, currentStack[i][1]);
             });
         }
         else {
@@ -281,7 +268,7 @@
         }
     };
 
-    _log.clear = function (v) {
+    ulog.clear = function (v) {
         console.clear();
 
         var $warnRecap = $warn.children('.icon.text');
@@ -290,7 +277,7 @@
         var $errorRecap = $error.children('.icon.text');
         $errorRecap.text(0);
 
-        _log.stackLog = [];
+        ulog.stackLog = [];
     };
 
     $(function () {
@@ -302,7 +289,7 @@
                 var $this = $(this);
                 $this.stop().animate({
                     'width': '230px'
-                }, 150, 'linear', function () {
+                }, 204, 'linear', function () {
                     $this.find('.label').css('opacity', 0).removeClass('hidden').animate({
                         'opacity': 1
                     }, 300, 'linear');
@@ -320,16 +307,17 @@
 
         (function (currentVersion) {
             var headID = document.getElementsByTagName("head")[0];
-            var _logVer = document.createElement('script');
-            _logVer.type = 'text/javascript';
-            _logVer.src = 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js';
-            _logVer.onload = function () {
-                if (+currentVersion.replace('.', '') < +_log.version.replace('.', ''))
+            var ulogVer = document.createElement('script');
+            ulogVer.type = 'text/javascript';
+            ulogVer.src = 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js';
+            ulogVer.onload = function () {
+                if (+currentVersion.replace('.', '') < +window['_' + 'log'].version.replace('.', ''))
                     $update.removeClass('hidden');
             };
-            document.getElementsByTagName("head")[0].appendChild(_logVer);
+            document.getElementsByTagName("head")[0].appendChild(ulogVer);
         })('0.2.0');
     });
 
+    return ulog;
 
 })(jQuery);
