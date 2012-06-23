@@ -6,7 +6,12 @@ Underscore Log
 
 #Goal
 
-Created a single and definitive cross browser tool for peaceful logging in development state and which allows with a simple replace and minification to go into production. To accomplish this Underscrore Log is helped by Firebug Lite, using this basic functions, fixing some and adding others.
+Tell the truth, in javascript is not possible to apply a powerfull and deep logging architecture in your applications.
+This is because, the console object is supported only for new generation browsers and, when you want to use it to test your code, you always have to remember to remove that calls before run your application in a old-generation browser.
+Moreover, you have to know that there isn't a unique implementation also between all new-generation browsers and that the user interface is always different.
+For this reasons is born the "Underscore Log" project, that unifies writing code and final user interface for the logging layer of your applications.
+With this tool, using the method _log.assert you can also run simple tests on your code, in the same time you write it. 
+To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic functions, fixing some and adding others.
 
 ----------------------------------------------------------------------------
 
@@ -21,7 +26,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 <li>through _log.external() you can implement a <b>complex control code</b> in an external file: underscoreLogExt.js</li>
 <li>created a <b>minimal</b> ui which allows the control errors and warns even when Firebug Lite is closed</li>
 <li><b>auto check</b> itself if there is a new version</li>
-<li>fixed a annoying bug inherited by Firebug Lite that if this console was closed the logs were printed messy and duplicates</li>
+<li>fixed a annoying bug inherited by Firebug Lite that if console was closed the logs were printed messy and duplicates</li>
 </ul>
 
 ----------------------------------------------------------------------------
@@ -37,7 +42,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 #Docs
 
 ####_log( v )
-> Prints a simple message  to the console
+> Prints a simple message to the console
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
@@ -61,7 +66,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.time( key )
-> Creates a new the timer, call <b>_log.timeEnd(key)</b> with the same key to stop the timer and print the time elapsed
+> Creates a new timer, call <b>_log.timeEnd(key)</b> with the same key to stop the timer and print the time elapsed
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
@@ -74,7 +79,7 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 > </ul>
 
 ####_log.timeStat( key )
-> Prints the statistics of timer(s), at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
+> Prints the statistics of timer, at least once must be iterated <b>console.time(key)</b> and <b>_log.timeEnd(key)</b> relatives
 > <ul>
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
@@ -115,6 +120,12 @@ Created a single and definitive cross browser tool for peaceful logging in devel
 
 ####_log.clear()
 > Clears the console.
+
+####_log.open()
+> Opens the console.
+
+####_log.close()
+> Closes the console.
 
 ----------------------------------------------------------------------------
 

@@ -220,13 +220,20 @@ window['_' + 'log'] = (function ($) {
 
     ulog.external = function (key, opt_args, opt_scope) {
         if (key) {
-            ulog.groupCollapsed(key, 'EXTERNAL');
-            ulog.stackLog.push(['groupCollapsed', [key]]);
+            if (typeof key === 'string') {
+                ulog.groupCollapsed(key, 'EXTERNAL');
+                ulog.stackLog.push(['groupCollapsed', [key]]);
 
-            ulog.external[key].apply(opt_scope || window, opt_args);
+                ulog.external[key].apply(opt_scope || window, opt_args);
 
-            ulog.groupEnd(key, 'EXTERNAL');
-            ulog.stackLog.push(['groupEnd', [key]]);
+                ulog.groupEnd(key, 'EXTERNAL');
+                ulog.stackLog.push(['groupEnd', [key]]);
+            } else {
+                //key is the object that contains the external functions
+                for (var prop in key) {
+                    ulog.external[prop] = key[prop];
+                }
+            }
         } else {
             throw 'Advaced Logging Error: in _' + 'log.timeStat(key) parameter key is required';
         }
