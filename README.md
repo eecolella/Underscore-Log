@@ -17,7 +17,7 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 
 #Features
 
-#### 0.2.0 v
+#### 1.0.0 v
 <ul>
 <li>created a <b>alias</b> for a specific features to Underscore Log: _log</li>
 <li><b>wrapped</b> the ripetitive console.log() in _log()</li>

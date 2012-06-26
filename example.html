@@ -1,17 +1,27 @@
 ﻿<!doctype html>
+<!--!*************************************************************
+ *
+ *      Underscore Log 1.0.0
+ * 
+ *      Created by Ermes Enea Colella
+ *      Released under CreativeCommons-Attribution-NonCommercial-ShareAlike license.
+ *      More information: https://github.com/eeColella/Underscore-Log
+ *  
+ **************************************************************-->
 <html>
 <head>
     <title>Underscore Log Test Page</title>
 
     <link rel="stylesheet" href="Styles/underscoreLog.css" />
-    <script type="text/javascript" src="Scripts/firebug-lite/build/firebug-lite-debug.js"></script>
+    <script type="text/javascript" src="Scripts/firebug-lite/build/firebug-lite.js"></script>
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/underscoreLog-debug.js"></script>
+    <script type="text/javascript" src="Scripts/underscoreLog.js"></script>
     <script type="text/javascript" src="Scripts/underscoreLogExt.js"></script>
 
     <script type="text/javascript">
-        _log.close();
-        _log('I\'m a simple message by _log() shortcut');
+
+        _log.open();
+        _log('I\'m a simple message by _log()');
         _log.info('I\'m a info message');
 
         _log.group('I\'m a group expandend');
@@ -37,15 +47,15 @@
 
             setTimeout(function () {
 
-                _log.warn('I\'m a warn');
-
                 //with the second parameter to false, the result did not show in console
                 _log.timeEnd('I\'m a timer', false);
                 _log.timeStats('I\'m a timer');
 
-            }, 1400);
+                _log.warn('I\'m a warn');
 
-        }, 1500);
+            }, 700);
+
+        }, 800);
 
     </script>
 
@@ -55,7 +65,6 @@
             background: #e8e8e8;
             height:100%;
         }
-
         #title
         {
             position:absolute;
@@ -70,8 +79,7 @@
             text-align: center;
             color: white;       
             font-family:'Segoe UI Light','Segoe UI', sans-serif;            
-        }
-        
+        }        
     </style>
 </head>
 <body>

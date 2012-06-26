@@ -1,6 +1,6 @@
 ﻿/*!*************************************************************
  *
- *      Underscore Log 0.2.0
+ *      Underscore Log 1.0.0
  * 
  *      Created by Ermes Enea Colella
  *      Released under CreativeCommons-Attribution-NonCommercial-ShareAlike license.
@@ -15,10 +15,10 @@ window['_' + 'log'] = (function ($) {
             ulog.toggle();
         }
     });
-    var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label hidden">Underscore Log</div></div>').appendTo($uLog);
-    var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="label hidden">Errors</div></div>').appendTo($uLog);
-    var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="label hidden">Warnings</div></div>').appendTo($uLog);
-    var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="label hidden"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
+    var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label">Underscore Log</div></div>').appendTo($uLog);
+    var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="label">Errors</div></div>').appendTo($uLog);
+    var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="label">Warnings</div></div>').appendTo($uLog);
+    var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="label"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
 
     //Function.prototype.bind
     "undefined" === typeof Function.prototype.bind && (Function.prototype.bind = function (c) { for (var d = this, b = [], a = 1, e = arguments.length; a < e; a++) b.push(arguments[a]); return function () { return d.apply(c, b) } });
@@ -28,20 +28,20 @@ window['_' + 'log'] = (function ($) {
     String.prototype.format = function () { var a = arguments; return this.replace(/\{\d+?\}/g, function (b) { return a[+b.match(/\d/)] }) };
 
     var ulog = function (v) {
-        console.log(v);
+        _console.log(v);
         ulog.stackLog.push(['log', [v]]);
     };
 
     ulog.stackLog = [];
 
     ulog.log = function (v) {
-        console.log(v);
+        _console.log(v);
         ulog.stackLog.push(['log', [v]]);
     }
 
     ulog.info = function (v) {
         if (v) {
-            console.info(v);
+            _console.info(v);
             ulog.stackLog.push(['info', [v]]);
         } else {
             throw 'Underscore Log Error: in _' + 'log.info(v) parameter v is required';
@@ -50,7 +50,7 @@ window['_' + 'log'] = (function ($) {
 
     ulog.error = function (v) {
         if (v) {
-            console.error(v);
+            _console.error(v);
             ulog.stackLog.push(['error', [v]]);
             var $errorRecap = $error.children('.icon.text');
             $errorRecap.text(+$errorRecap.text() + 1);
@@ -74,7 +74,7 @@ window['_' + 'log'] = (function ($) {
 
     ulog.warn = function (v) {
         if (v) {
-            console.warn(v);
+            _console.warn(v);
             ulog.stackLog.push(['warn', [v]]);
             var $warnRecap = $warn.children('.icon.text');
             $warnRecap.text(+$warnRecap.text() + 1);
@@ -145,7 +145,6 @@ window['_' + 'log'] = (function ($) {
         if (key) {
             if (ulog.timeStats[key]) {
                 ulog.groupCollapsed(key, 'TIMER STAT');
-                ulog.stackLog.push(['groupCollapsed', [key]]);
 
                 ulog.log(String.Format('interations: {0} [{1}]', ulog.timeStats[key].iterations.length, ulog.timeStats[key].iterations));
                 ulog.log(String.Format('min: {0} ms', ulog.timeStats[key].min));
@@ -153,7 +152,6 @@ window['_' + 'log'] = (function ($) {
                 ulog.log(String.Format('average: {0} ms ± {1} ms ({2}%)', ulog.timeStats[key].avg, ulog.timeStats[key].errMs, ulog.timeStats[key].errPer));
 
                 ulog.groupEnd(key, 'TIMER STAT');
-                ulog.stackLog.push(['groupEnd', [key]]);
             } else {
                 throw String.Format('Underscore Log Error: in _' + 'log.timeStats("{0}") there are no time reports with key "{0}"', key);
             }
@@ -179,10 +177,10 @@ window['_' + 'log'] = (function ($) {
     ulog.group = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
-                console.group(String.Format('GROUP: {0}', v));
+                _console.group(String.Format('GROUP: {0}', v));
                 ulog.stackLog.push(['group', [v]]);
             } else {
-                console.group(String.Format('{0}: {1}', opt_prefix, v));
+                _console.group(String.Format('{0}: {1}', opt_prefix, v));
                 ulog.stackLog.push(['group', [v, opt_prefix]]);
             }
         } else {
@@ -193,10 +191,10 @@ window['_' + 'log'] = (function ($) {
     ulog.groupCollapsed = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
-                console.groupCollapsed(String.Format('GROUP: {0}', v));
+                _console.groupCollapsed(String.Format('GROUP: {0}', v));
                 ulog.stackLog.push(['groupCollapsed', [v]]);
             } else {
-                console.groupCollapsed(String.Format('{0}: {1}', opt_prefix, v));
+                _console.groupCollapsed(String.Format('{0}: {1}', opt_prefix, v));
                 ulog.stackLog.push(['groupCollapsed', [v, opt_prefix]]);
             }
         } else {
@@ -207,10 +205,10 @@ window['_' + 'log'] = (function ($) {
     ulog.groupEnd = function (v, opt_prefix) {
         if (v) {
             if (!opt_prefix) {
-                console.groupEnd(String.Format('GROUP: {0}', v));
+                _console.groupEnd(String.Format('GROUP: {0}', v));
                 ulog.stackLog.push(['groupEnd', [v]]);
             } else {
-                console.groupEnd(String.Format('{0}: {1}', opt_prefix, v));
+                _console.groupEnd(String.Format('{0}: {1}', opt_prefix, v));
                 ulog.stackLog.push(['groupEnd', [v, opt_prefix]]);
             }
         } else {
@@ -222,12 +220,8 @@ window['_' + 'log'] = (function ($) {
         if (key) {
             if (typeof key === 'string') {
                 ulog.groupCollapsed(key, 'EXTERNAL');
-                ulog.stackLog.push(['groupCollapsed', [key]]);
-
                 ulog.external[key].apply(opt_scope || window, opt_args);
-
                 ulog.groupEnd(key, 'EXTERNAL');
-                ulog.stackLog.push(['groupEnd', [key]]);
             } else {
                 //key is the object that contains the external functions
                 for (var prop in key) {
@@ -242,7 +236,7 @@ window['_' + 'log'] = (function ($) {
     ulog.open = function () {
         var iFrameFb = document.getElementById('FirebugUI');
         if (iFrameFb) {
-            if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+            if (document.getElementById('FirebugUI').className != 'opened') {
                 Firebug.chrome.open(function () {
                     var currentStack = ulog.stackLog;
                     ulog.clear();
@@ -260,8 +254,8 @@ window['_' + 'log'] = (function ($) {
 
     ulog.close = function () {
         var iFrameFb = document.getElementById('FirebugUI');
-        if (iFrameFb) {
-            if ((!iFrameFb.style.visibility == 'hidden') && (!document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+        if (iFrameFb && Firebug.chrome) {
+            if (document.getElementById('FirebugUI').className == 'opened') {
                 Firebug.chrome.close();
             }
         } else {
@@ -275,7 +269,7 @@ window['_' + 'log'] = (function ($) {
     ulog.toggle = function () {
         var iFrameFb = document.getElementById('FirebugUI');
         if (iFrameFb) {
-            if ((iFrameFb.style.visibility == 'hidden') || (document.getElementById('FirebugUI').getAttribute('allowtransparency') == 'true')) {
+            if (document.getElementById('FirebugUI').className != 'opened') {
                 Firebug.chrome.open(function () {
                     var currentStack = ulog.stackLog;
                     ulog.clear();
@@ -295,7 +289,7 @@ window['_' + 'log'] = (function ($) {
     };
 
     ulog.clear = function (v) {
-        console.clear();
+        _console.clear();
 
         var $warnRecap = $warn.children('.icon.text');
         $warnRecap.text(0);
@@ -314,17 +308,12 @@ window['_' + 'log'] = (function ($) {
             var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
                 var $this = $(this);
                 $this.stop().animate({
-                    'width': '230px'
-                }, 204, 'linear', function () {
-                    $this.find('.label').css('opacity', 0).removeClass('hidden').animate({
-                        'opacity': 1
-                    }, 300, 'linear');
-                });
+                    'margin-right': '0px'
+                }, 204, 'linear');
             }).on('mouseleave', '.child', function () {
                 var $this = $(this);
-                $this.find('.label').addClass('hidden');
                 $this.stop().animate({
-                    'width': '26px'
+                    'margin-right': '-197px'
                 }, 100, 'linear');
             });
         }
@@ -337,11 +326,13 @@ window['_' + 'log'] = (function ($) {
             ulogVer.type = 'text/javascript';
             ulogVer.src = 'https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js';
             ulogVer.onload = function () {
-                if (+currentVersion.replace('.', '') < +window['_' + 'log'].version.replace('.', ''))
+                if (+currentVersion.replace('.', '') < +window['_' + 'log'].version.replace('.', '')) {
                     $update.removeClass('hidden');
+                    $uLog.addClass('update');
+                }
             };
             document.getElementsByTagName("head")[0].appendChild(ulogVer);
-        })('0.2.0');
+        })('1.0.0');
     });
 
     return ulog;
