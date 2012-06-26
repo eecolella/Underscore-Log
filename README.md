@@ -6,7 +6,8 @@ Underscore Log
 
 #Goal
 
-Tell the truth, in javascript is not possible to apply a powerfull and deep logging architecture in your applications.</br>
+Tell the truth, in javascript is not possible to apply a powerfull and deep logging architecture in your applications.
+
 This is because, the console object is supported only for new generation browsers and, when you want to use it to test your code, you always have to remember to remove that calls before run your application in a old-generation browser.
 Moreover, you have to know that there isn't a unique implementation also between all new-generation browsers and that the user interface is always different.
 For this reasons is born the "Underscore Log" project, that unifies writing code and final user interface for the logging layer of your applications.
