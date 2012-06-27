@@ -146,14 +146,6 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 <li>auto check itself feature not works in IE browsers</li>
 </ul>
 
-----------------------------------------------------------------------------
 
-#Creative Commons
-
-<ul>
-<li>Attribution</li>
-<li>Non Commercial</li>
-<li>Share Alike</li>
-</ul>
 
 <img src="http://www.talkmeabout.com/wp-content/uploads/2012/04/by-nc-sa.jpg" />
