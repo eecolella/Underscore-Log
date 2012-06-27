@@ -10889,7 +10889,9 @@ var ChromeFrameBase = extend(ChromeBase,
             [Firebug.browser.window, "resize", this.resize],
             [$("fbWindow_btClose"), "click", this.close],
             [$("fbWindow_btDetach"), "click", this.detach],       
-            [$("fbWindow_btDeactivate"), "click", this.deactivate]       
+            //UnderscoreLog
+            //[$("fbWindow_btDeactivate"), "click", this.deactivate]
+            [$("fbWindow_btDeactivate"), "click", this.close]
         );
         
         if (!Env.Options.enablePersistent)
@@ -31185,4 +31187,4 @@ FirebugChrome.Skin =
 FBL.initialize();
 // ************************************************************************************************
 
-})();
+})(); 

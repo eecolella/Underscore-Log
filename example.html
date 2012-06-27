@@ -19,7 +19,7 @@
     <script type="text/javascript" src="Scripts/underscoreLogExt.js"></script>
 
     <script type="text/javascript">
-
+         
         _log.open();
         _log('I\'m a simple message by _log()');
         _log.info('I\'m a info message');
@@ -32,6 +32,8 @@
         _log.time('I\'m a timer');
 
         setTimeout(function () {
+
+            _log('I\'m #title: ', $('#title'));
 
             _log.groupCollapsed('I\'m a group collapsed');
             _log.timeEnd('I\'m a timer');

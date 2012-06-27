@@ -27,31 +27,39 @@ window['_' + 'log'] = (function ($) {
     //String.prototype.format
     String.prototype.format = function () { var a = arguments; return this.replace(/\{\d+?\}/g, function (b) { return a[+b.match(/\d/)] }) };
 
-    var ulog = function (v) {
-        _console.log(v);
-        ulog.stackLog.push(['log', [v]]);
+    var ulog = function () {
+        if (arguments.length > 0) {
+            _console.log.apply(this, arguments);
+            ulog.stackLog.push(['log', arguments]);
+        } else {
+            throw 'Underscore Log Error: in _' + 'log(v [,v, ...]) at least one parameter v is required';
+        }
     };
 
     ulog.stackLog = [];
 
-    ulog.log = function (v) {
-        _console.log(v);
-        ulog.stackLog.push(['log', [v]]);
-    }
-
-    ulog.info = function (v) {
-        if (v) {
-            _console.info(v);
-            ulog.stackLog.push(['info', [v]]);
+    ulog.log = function () {
+        if (arguments.length > 0) {
+            _console.log.apply(this, arguments);
+            ulog.stackLog.push(['log', arguments]);
         } else {
-            throw 'Underscore Log Error: in _' + 'log.info(v) parameter v is required';
+            throw 'Underscore Log Error: in _' + 'log.log(v [,v, ...]) at least one parameter v is required';
         }
     }
 
-    ulog.error = function (v) {
-        if (v) {
-            _console.error(v);
-            ulog.stackLog.push(['error', [v]]);
+    ulog.info = function () {
+        if (arguments.length > 0) {
+            _console.info.apply(this, arguments);
+            ulog.stackLog.push(['info', arguments]);
+        } else {
+            throw 'Underscore Log Error: in _' + 'log.info(v [,v, ...]) at least one parameter v is required';
+        }
+    }
+
+    ulog.error = function () {
+        if (arguments.length > 0) {
+            _console.error.apply(this, arguments);
+            ulog.stackLog.push(['error', arguments]);
             var $errorRecap = $error.children('.icon.text');
             $errorRecap.text(+$errorRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
@@ -68,14 +76,14 @@ window['_' + 'log'] = (function ($) {
                 });
             }
         } else {
-            throw 'Underscore Log Error: in _' + 'log.error(v) parameter v is required';
+            throw 'Underscore Log Error: in _' + 'log.error(v [,v, ...]) at least one parameter v is required';
         }
     };
 
-    ulog.warn = function (v) {
-        if (v) {
-            _console.warn(v);
-            ulog.stackLog.push(['warn', [v]]);
+    ulog.warn = function () {
+        if (arguments.length > 0) {
+            _console.warn.apply(this, arguments);
+            ulog.stackLog.push(['warn', arguments]);
             var $warnRecap = $warn.children('.icon.text');
             $warnRecap.text(+$warnRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
@@ -92,7 +100,7 @@ window['_' + 'log'] = (function ($) {
                 });
             }
         } else {
-            throw 'Underscore Log Error: in _' + 'log.warn(v) parameter v is required';
+            throw 'Underscore Log Error: in _' + 'log.warn(v [,v, ...]) at least one parameter v is required';
         }
     };
 
@@ -118,7 +126,7 @@ window['_' + 'log'] = (function ($) {
 
                 //check whether log, default true
                 if ((opt_show === undefined) ? true : opt_show)
-                    ulog.log(String.Format('{0} {1}', key, gap));
+                    ulog(String.Format('{0} {1}', key, gap));
 
                 ulog.timeStats[key].iterations.push(gap);
 
@@ -146,10 +154,10 @@ window['_' + 'log'] = (function ($) {
             if (ulog.timeStats[key]) {
                 ulog.groupCollapsed(key, 'TIMER STAT');
 
-                ulog.log(String.Format('interations: {0} [{1}]', ulog.timeStats[key].iterations.length, ulog.timeStats[key].iterations));
-                ulog.log(String.Format('min: {0} ms', ulog.timeStats[key].min));
-                ulog.log(String.Format('max: {0} ms', ulog.timeStats[key].max));
-                ulog.log(String.Format('average: {0} ms ± {1} ms ({2}%)', ulog.timeStats[key].avg, ulog.timeStats[key].errMs, ulog.timeStats[key].errPer));
+                ulog(String.Format('interations: {0} [{1}]', ulog.timeStats[key].iterations.length, ulog.timeStats[key].iterations));
+                ulog(String.Format('min: {0} ms', ulog.timeStats[key].min));
+                ulog(String.Format('max: {0} ms', ulog.timeStats[key].max));
+                ulog(String.Format('average: {0} ms ± {1} ms ({2}%)', ulog.timeStats[key].avg, ulog.timeStats[key].errMs, ulog.timeStats[key].errPer));
 
                 ulog.groupEnd(key, 'TIMER STAT');
             } else {
@@ -160,17 +168,33 @@ window['_' + 'log'] = (function ($) {
         }
     };
 
-    ulog.assert = function (exp, v, opt_mode) {
+    ulog.assert = function (exp, v) {
 
-        if ((exp !== undefined) && (v !== undefined)) {
+        if (v !== undefined) {
             if (!exp) {
-                if (opt_mode == 'warn')
-                    ulog.warn(v);
-                else
-                    ulog.error(v);
+                var args = [];
+                for (var i = 1, length = arguments.length; i < length; i++) {
+                    args.push(arguments[i]);
+                }
+                ulog.error.apply(this,args);
             }
         } else {
-            throw 'Advaced Logging Error: in _' + 'log.assert(exp,v) all parameters are required';
+            throw 'Advaced Logging Error: in _' + 'log.assert(exp, v [,v, ...]) at least one parameter v is required';
+        }
+    };
+
+    ulog.assertWarn = function (exp, v) {
+
+        if (v !== undefined) {
+            if (!exp) {
+                var args = [];
+                for (var i = 1, length = arguments.length; i < length; i++) {
+                    args.push(arguments[i]);
+                }
+                ulog.warn.apply(this, args);
+            }
+        } else {
+            throw 'Advaced Logging Error: in _' + 'log.assertWarn(exp,v) parameter v is required';
         }
     };
 
@@ -235,7 +259,7 @@ window['_' + 'log'] = (function ($) {
 
     ulog.open = function () {
         var iFrameFb = document.getElementById('FirebugUI');
-        if (iFrameFb) {
+        if (iFrameFb && Firebug && Firebug.chrome) {
             if (document.getElementById('FirebugUI').className != 'opened') {
                 Firebug.chrome.open(function () {
                     var currentStack = ulog.stackLog;
@@ -248,7 +272,7 @@ window['_' + 'log'] = (function ($) {
             //Firebug Lite is not loaded yet
             setTimeout(function () {
                 ulog.open();
-            }, 500);
+            }, 50);
         }
     };
 
@@ -262,7 +286,7 @@ window['_' + 'log'] = (function ($) {
             //Firebug Lite is not loaded yet
             setTimeout(function () {
                 ulog.close();
-            }, 500);
+            }, 50);
         }
     };
 

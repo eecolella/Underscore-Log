@@ -46,25 +46,25 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 
 #Docs
 
-####_log( v )
+####_log( v [,v, ...])
 > Prints a simple message to the console
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
-####_log.info( v )
+####_log.info( v [,v, ...])
 > Prints a message to the console with the visual "info" icon
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
-####_log.warn( v )
+####_log.warn( v [,v, ...])
 > Prints a message to the console with the visual "warning" icon and color coding
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
 > </ul>
 
-####_log.error( v )
+####_log.error( v [,v, ...])
 > Prints a message to the console with the visual "error" icon and color coding
 > <ul>
 > <li><b>v</b>: a Object that is printed in console</li>
@@ -89,12 +89,18 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 > <li><b>key</b>: a String that identifies the timer</li>
 > </ul>
 
-####_log.assert( exp, v [,mode] )
-> Tests that an expression is true. If not, it will write a error (or warn) message to the console
+####_log.assert( exp, v [,v, ...])
+> Tests that an expression is true. If not, it will write a error message to the console
 > <ul>
 > <li><b>exp</b>: a Bool or any type that will be evaluated</li>
-> <li><b>v</b>: a Object that is printed in console in error (or warn) message if the <b>exp</b> is false</li>
-> <li><b>mode</b>: a String indicating whether a print a error or a warn, by <b>default</b> print a error, pass 'warn' for print a warn</li>
+> <li><b>v</b>: a Object that is printed in console in error message if the <b>exp</b> is false</li>
+> </ul>
+
+####_log.assertWarn( exp, v [,v, ...])
+> Tests that an expression is true. If not, it will write a warn message to the console
+> <ul>
+> <li><b>exp</b>: a Bool or any type that will be evaluated</li>
+> <li><b>v</b>: a Object that is printed in console in warn message if the <b>exp</b> is false</li>
 > </ul>
 
 ####_log.external( key [,args] [,scope] )
@@ -149,3 +155,5 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 <li>Non Commercial</li>
 <li>Share Alike</li>
 </ul>
+
+<img src="http://www.talkmeabout.com/wp-content/uploads/2012/04/by-nc-sa.jpg" />
