@@ -144,4 +144,4 @@ To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic 
 
 <ul>
 <li>auto check itself feature not works in IE browsers</li> 
-</ul>
+</ul> 
