@@ -8,23 +8,18 @@
  *  
  **************************************************************/
 window["_" + "log"] = function ($) {
-    var $uLog = $('<div id="uLog" class="child clearfix"></div>').on("click", function (e) { if (!$(e.target).is("a")) ulog.toggle() }); var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label">Underscore Log</div></div>').appendTo($uLog); var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="label">Errors</div></div>').appendTo($uLog); var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="label">Warnings</div></div>').appendTo($uLog);
-    var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="label"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog); "undefined" === typeof Function.prototype.bind && (Function.prototype.bind = function (c) { for (var d = this, b = [], a = 1, e = arguments.length; a < e; a++) b.push(arguments[a]); return function () { return d.apply(c, b) } }); String.Format = function (a) {
-        var b = arguments; return a.replace(/\{\d+?\}/g, function (a) {
-            return b[+a.match(/\d/) +
-            1]
-        })
-    }; String.prototype.format = function () { var a = arguments; return this.replace(/\{\d+?\}/g, function (b) { return a[+b.match(/\d/)] }) }; var ulog = function () { if (arguments.length > 0) { _console.log.apply(this, arguments); ulog.stackLog.push(["log", arguments]) } else throw "Underscore Log Error: in _" + "log(v [,v, ...]) at least one parameter v is required"; }; ulog.stackLog = []; ulog.log = function () {
-        if (arguments.length > 0) { _console.log.apply(this, arguments); ulog.stackLog.push(["log", arguments]) } else throw "Underscore Log Error: in _" +
-        "log.log(v [,v, ...]) at least one parameter v is required";
+    var $uLog = $('<div id="uLog" class="child"><div></div></div>').on("click", function (e) { if (!$(e.target).is("a")) ulog.toggle() }); window.asd = $uLog; var $ul = $("<ul></ul>").appendTo($uLog.children()); var $gen = $('<li class="clearfix"><div class="icon uLog"></div><div class="text uLog">Underscore Log</div></li>').appendTo($ul); var $error = $('<li><div class="counter error">0</div><div class="text error">Errors</div></li>').appendTo($ul); var $warn = $('<li><div class="counter warn">0</div><div class="text warn">Warnings</div></li>').appendTo($ul);
+    var $update = $('<li class="hidden"><div class="icon update"></div><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></li>').appendTo($ul); "undefined" === typeof Function.prototype.bind && (Function.prototype.bind = function (c) { for (var d = this, b = [], a = 1, e = arguments.length; a < e; a++) b.push(arguments[a]); return function () { return d.apply(c, b) } }); String.Format = function (a) { var b = arguments; return a.replace(/\{\d+?\}/g, function (a) { return b[+a.match(/\d/) + 1] }) }; String.prototype.format =
+    function () { var a = arguments; return this.replace(/\{\d+?\}/g, function (b) { return a[+b.match(/\d/)] }) }; var ulog = function () { if (arguments.length > 0) { _console.log.apply(this, arguments); ulog.stackLog.push(["log", arguments]) } else throw "Underscore Log Error: in _" + "log(v [,v, ...]) at least one parameter v is required"; }; ulog.stackLog = []; ulog.log = function () {
+        if (arguments.length > 0) { _console.log.apply(this, arguments); ulog.stackLog.push(["log", arguments]) } else throw "Underscore Log Error: in _" + "log.log(v [,v, ...]) at least one parameter v is required";
     }; ulog.info = function () { if (arguments.length > 0) { _console.info.apply(this, arguments); ulog.stackLog.push(["info", arguments]) } else throw "Underscore Log Error: in _" + "log.info(v [,v, ...]) at least one parameter v is required"; }; ulog.error = function () {
         if (arguments.length > 0) {
-            _console.error.apply(this, arguments); ulog.stackLog.push(["error", arguments]); var $errorRecap = $error.children(".icon.text"); $errorRecap.text(+$errorRecap.text() + 1); if (Firebug) $("#FirebugUI").contents().find(".logRow-error").each(function (i,
+            _console.error.apply(this, arguments); ulog.stackLog.push(["error", arguments]); var $errorRecap = $error.children(".counter"); $errorRecap.text(+$errorRecap.text() + 1); if (Firebug) $("#FirebugUI").contents().find(".logRow-error").each(function (i,
             el) { var fOpenParent = function ($el) { var $parentGroup = $el.parents(".logGroup"); if ($parentGroup.length > 0) { $parentGroup.addClass("opened"); fOpenParent($parentGroup) } }; fOpenParent($(el)) })
         } else throw "Underscore Log Error: in _" + "log.error(v [,v, ...]) at least one parameter v is required";
     }; ulog.warn = function () {
         if (arguments.length > 0) {
-            _console.warn.apply(this, arguments); ulog.stackLog.push(["warn", arguments]); var $warnRecap = $warn.children(".icon.text"); $warnRecap.text(+$warnRecap.text() + 1); if (Firebug) $("#FirebugUI").contents().find(".logRow-error").each(function (i,
+            _console.warn.apply(this, arguments); ulog.stackLog.push(["warn", arguments]); var $warnRecap = $warn.children(".counter"); $warnRecap.text(+$warnRecap.text() + 1); if (Firebug) $("#FirebugUI").contents().find(".logRow-error").each(function (i,
             el) { var fOpenParent = function ($el) { var $parentGroup = $el.parents(".logGroup"); if ($parentGroup.length > 0) { $parentGroup.addClass("opened"); fOpenParent($parentGroup) } }; fOpenParent($(el)) })
         } else throw "Underscore Log Error: in _" + "log.warn(v [,v, ...]) at least one parameter v is required";
     }; ulog.time = function (key) {
@@ -69,13 +64,13 @@ window["_" + "log"] = function ($) {
             var currentStack = ulog.stackLog;
             ulog.clear(); for (var i = 0, length = currentStack.length; i < length; i++) ulog[currentStack[i][0]].apply(this, currentStack[i][1])
         }); else Firebug.chrome.close(); else setTimeout(function () { ulog.close() }, 500)
-    }; ulog.clear = function (v) { _console.clear(); var $warnRecap = $warn.children(".icon.text"); $warnRecap.text(0); var $errorRecap = $error.children(".icon.text"); $errorRecap.text(0); ulog.stackLog = [] }; $(function () {
-        if ($("#eecBar").length) var $eecBar = $('<div id="eecBar"></div>'); else var $eecBar = $('<div id="eecBar"></div>').appendTo($("body")).on("mouseenter",
-        ".child", function () { var $this = $(this); $this.stop().animate({ "margin-right": "0px" }, 204, "linear") }).on("mouseleave", ".child", function () { var $this = $(this); $this.stop().animate({ "margin-right": "-197px" }, 100, "linear") }); $uLog.appendTo($eecBar); (function (currentVersion) {
-            var headID = document.getElementsByTagName("head")[0]; var ulogVer = document.createElement("script"); ulogVer.type = "text/javascript"; ulogVer.src = "https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js"; ulogVer.onload = function () {
-                if (+currentVersion.replace(".",
-                "") < +window["_" + "log"].version.replace(".", "")) { $update.removeClass("hidden"); $uLog.addClass("update") }
-            }; document.getElementsByTagName("head")[0].appendChild(ulogVer)
+    }; ulog.clear = function (v) { _console.clear(); $warn.children(".counter").text(0); $error.children(".counter").text(0); ulog.stackLog = [] }; $(function () {
+        if ($("#eecBar").length) var $eecBar = $('<div id="eecBar"></div>'); else var $eecBar = $('<div id="eecBar"></div>').appendTo($("body")).on("mouseenter", ".child", function () {
+            $(this).stop().animate({ "margin-right": "-10px" },
+            100)
+        }).on("mouseleave", ".child", function () { $(this).stop().animate({ "margin-right": "-213px" }, 100) }); $uLog.appendTo($eecBar); (function (currentVersion) {
+            var headID = document.getElementsByTagName("head")[0]; var ulogVer = document.createElement("script"); ulogVer.type = "text/javascript"; ulogVer.src = "https://raw.github.com/eeColella/Underscore-Log/master/Scripts/version.js"; ulogVer.onload = function () { if (+currentVersion.replace(".", "") < +window["_" + "log"].version.replace(".", "")) { $update.removeClass("hidden"); $uLog.addClass("update") } };
+            document.getElementsByTagName("head")[0].appendChild(ulogVer)
         })("1.0.0")
     }); return ulog
 }(jQuery);

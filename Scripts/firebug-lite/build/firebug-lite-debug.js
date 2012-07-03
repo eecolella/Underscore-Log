@@ -8208,10 +8208,11 @@ FBL.Menu = function(options)
     
     this.isVisible = false;
     
-    this.handleMouseDown = bind(this.handleMouseDown, this);
+    //UnderscoreLog
+    //this.handleMouseDown = bind(this.handleMouseDown, this);
     this.handleMouseOver = bind(this.handleMouseOver, this);
     this.handleMouseOut = bind(this.handleMouseOut, this);
-    
+
     this.handleWindowMouseDown = bind(this.handleWindowMouseDown, this);
 };
 

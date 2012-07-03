@@ -33,7 +33,7 @@
 
         setTimeout(function () {
 
-            _log('I\'m #title: ', $('#title'));
+            _log('I\'m img: ', $('#imgUnderscoreLog img'));
 
             _log.groupCollapsed('I\'m a group collapsed');
             _log.timeEnd('I\'m a timer');
@@ -55,36 +55,27 @@
 
                 _log.warn('I\'m a warn');
 
-            }, 700);
+            }, 500);
 
         }, 800);
 
     </script>
 
     <style type="text/css">
-        html
+        html, body
         {
-            background: #e8e8e8;
+            margin:0;
+            padding:0;
             height:100%;
+            background: #f0f0f0;
         }
-        #title
+        #imgUnderscoreLog
         {
-            position:absolute;
-            top:50%;
-            left:50%;
-            margin-left:-300px;
-            margin-top:-300px;
-            width: 600px;
-            height:400px;
-            line-height:440px;
-            font-size: 200px;
-            text-align: center;
-            color: white;       
-            font-family:'Segoe UI Light','Segoe UI', sans-serif;            
+            text-align:center;       
         }        
     </style>
 </head>
 <body>
-    <div id="title">_log</div>
+    <div id="imgUnderscoreLog"><img src="Styles/imgUnderscoreLog.png" alt="Underscore Log" /></div>
 </body>
 </html>

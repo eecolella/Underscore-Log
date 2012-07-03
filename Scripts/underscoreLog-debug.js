@@ -10,15 +10,17 @@
 
 window['_' + 'log'] = (function ($) {
 
-    var $uLog = $('<div id="uLog" class="child clearfix"></div>').on('click', function (e) {
+    var $uLog = $('<div id="uLog" class="child"><div></div></div>').on('click', function (e) {
         if (!$(e.target).is('a')) {
             ulog.toggle();
         }
     });
-    var $gen = $('<div class="general clearfix"><div class="icon uLog"></div><div class="label">Underscore Log</div></div>').appendTo($uLog);
-    var $error = $('<div class="error clearfix"><div class="icon text">0</div><div class="label">Errors</div></div>').appendTo($uLog);
-    var $warn = $('<div class="warn clearfix"><div class="icon text">0</div><div class="label">Warnings</div></div>').appendTo($uLog);
-    var $update = $('<div class="update clearfix hidden"><div class="icon update"></div><div class="label"><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></div></div>').appendTo($uLog);
+    window.asd = $uLog;
+    var $ul = $('<ul></ul>').appendTo($uLog.children());
+    var $gen = $('<li class="clearfix"><div class="icon uLog"></div><div class="text uLog">Underscore Log</div></li>').appendTo($ul);
+    var $error = $('<li><div class="counter error">0</div><div class="text error">Errors</div></li>').appendTo($ul);
+    var $warn = $('<li><div class="counter warn">0</div><div class="text warn">Warnings</div></li>').appendTo($ul);
+    var $update = $('<li class="hidden"><div class="icon update"></div><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></li>').appendTo($ul);
 
     //Function.prototype.bind
     "undefined" === typeof Function.prototype.bind && (Function.prototype.bind = function (c) { for (var d = this, b = [], a = 1, e = arguments.length; a < e; a++) b.push(arguments[a]); return function () { return d.apply(c, b) } });
@@ -60,7 +62,7 @@ window['_' + 'log'] = (function ($) {
         if (arguments.length > 0) {
             _console.error.apply(this, arguments);
             ulog.stackLog.push(['error', arguments]);
-            var $errorRecap = $error.children('.icon.text');
+            var $errorRecap = $error.children('.counter');
             $errorRecap.text(+$errorRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
@@ -84,7 +86,7 @@ window['_' + 'log'] = (function ($) {
         if (arguments.length > 0) {
             _console.warn.apply(this, arguments);
             ulog.stackLog.push(['warn', arguments]);
-            var $warnRecap = $warn.children('.icon.text');
+            var $warnRecap = $warn.children('.counter');
             $warnRecap.text(+$warnRecap.text() + 1);
             //if you are using Firebug Lite expand all group container
             if (Firebug) {
@@ -315,32 +317,25 @@ window['_' + 'log'] = (function ($) {
     ulog.clear = function (v) {
         _console.clear();
 
-        var $warnRecap = $warn.children('.icon.text');
-        $warnRecap.text(0);
-
-        var $errorRecap = $error.children('.icon.text');
-        $errorRecap.text(0);
+        $warn.children('.counter').text(0);
+        $error.children('.counter').text(0);
 
         ulog.stackLog = [];
     };
 
     $(function () {
-        if ($('#eecBar').length) {
+        if ($('#eecBar').length)
             var $eecBar = $('<div id="eecBar"></div>');
-        }
-        else {
+        else
             var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
-                var $this = $(this);
-                $this.stop().animate({
-                    'margin-right': '0px'
-                }, 204, 'linear');
+                $(this).stop().animate({
+                    'margin-right': '-10px'
+                }, 100);
             }).on('mouseleave', '.child', function () {
-                var $this = $(this);
-                $this.stop().animate({
-                    'margin-right': '-197px'
-                }, 100, 'linear');
+                $(this).stop().animate({
+                    'margin-right': '-213px'
+                }, 100);
             });
-        }
 
         $uLog.appendTo($eecBar);
 
