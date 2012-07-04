@@ -26,9 +26,13 @@ http://eecolella.com/UnderscoreLog/
 
 ----------------------------------------------------------------------------
 
-#Wow to use
+#Development Pattern with Underscore Log
 
-http://eecolella.com/UnderscoreLog/
+<ul>
+<li>1. Coding, logging and testing at the same time during the development phase</li>
+<li>2. Just before release, replace all calls to Underscore Log from "_log" to "//_log" with any editor</li>
+<li>3. Compress the code with any compressor for delete the comments (e.g http://closure-compiler.appspot.com/home)</li>
+</ul>
 
 ----------------------------------------------------------------------------
 
