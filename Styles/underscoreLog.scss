@@ -15,12 +15,6 @@
     *display: inline; 
 }
 
-@mixin borderRadius($topleft, $topright: $topleft, $bottomright: $topleft, $bottomleft: $topleft) {
-    -moz-border-radius: $topleft $topright $bottomright $bottomleft;
-    -webkit-border-radius: $topleft $topright $bottomright $bottomleft;
-    border-radius: $topleft $topright $bottomright $bottomleft;
-}
-
 @mixin unselectable() {
         -moz-user-select: none; 
         -khtml-user-select: none; 
@@ -42,25 +36,27 @@
     right: 0;
 	overflow: hidden;
     font-family: Helvetica, sans-serif; 
+	padding: 10px 0px 10px 10px;
 }
 	#eecBar > div {
-		background: #202020;
+		background: #f0f0f0;
 		padding: 8px;
 		-webkit-border-radius: 5px 0 0 5px;
 		-moz-border-radius: 5px 0 0 5px;
 		border-radius: 5px 0 0 5px;
-		-webkit-box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.75);
-		-moz-box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.75);
-		box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.75);
-		border: 1px solid #282828;
+		-webkit-box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.05);
+		-moz-box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.05);
+		box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.05);
+		border: 1px solid #d8d8d8;
 		border-right: none;
 	}
 		#eecBar > div > div
 		{
-			border: 1px solid #282828;
-			-webkit-box-shadow: inset 0px 0px 6px 0px #000;
-			box-shadow: inset 0px 0px 6px 0px #000;
-			background: #141414;
+			border: 1px solid #d8d8d8;
+			-webkit-box-shadow: inset 0px 0px 6px 0px #ececec;
+			-moz-box-shadow: 0px 3px 7px #ececec;
+			box-shadow: inset 0px 0px 6px 0px #ececec;
+			background: #f4f4f4;
 			color: #707070;
 		}
 
@@ -72,8 +68,7 @@
 				#eecBar > div > div > ul > li
 				{
 					padding: 8px;
-					border-bottom: 1px solid #040404;
-					border-top: 1px solid #242424;
+					border-top: 1px solid #d8d8d8;
 				}
 
 #uLog
@@ -105,7 +100,7 @@
 /* uLog div styling */
 #uLog .icon.uLog
 {
-	background: url('underscoreLog.png') -6px -6px no-repeat;
+	background: url('underscoreLog.png') -6px -3px no-repeat;
 }
 #uLog .text.uLog
 {	
@@ -115,25 +110,25 @@
 /* error div styling */
 #uLog .counter.error, #uLog .text.error
 {
-	color: #830000;
+	color: #b90000;
 }
 /* warn div styling */
 #uLog .counter.warn, #uLog .text.warn
 {
-	color: #AD8B00;
+	color: #CCA400;
 }
 /* update div styling */
 #uLog .icon.update
 {
-	background: url('underscoreLog.png') -6px -36px no-repeat;
+	background: url('underscoreLog.png') -6px -33px no-repeat;
 }
 #uLog a
 {
-	color: #b0b0b0;
+	color: #a0a0a0;
 }
 #uLog a:hover
 {
-	color:#e0e0e0;
+	color:#c0c0c0;
 }
 
 /* Hide from both screenreaders and browsers: h5bp.com/u */
@@ -158,4 +153,8 @@
 .clearfix
 {
     *zoom: 1;
+}
+
+.noborder{
+	border:0;
 }

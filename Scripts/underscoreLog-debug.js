@@ -17,7 +17,7 @@ window['_' + 'log'] = (function ($) {
     });
     window.asd = $uLog;
     var $ul = $('<ul></ul>').appendTo($uLog.children());
-    var $gen = $('<li class="clearfix"><div class="icon uLog"></div><div class="text uLog">Underscore Log</div></li>').appendTo($ul);
+    var $gen = $('<li class="clearfix noborder"><div class="icon uLog"></div><div class="text uLog">Underscore Log</div></li>').appendTo($ul);
     var $error = $('<li><div class="counter error">0</div><div class="text error">Errors</div></li>').appendTo($ul);
     var $warn = $('<li><div class="counter warn">0</div><div class="text warn">Warnings</div></li>').appendTo($ul);
     var $update = $('<li class="hidden"><div class="icon update"></div><a href="https://github.com/eeColella/Underscore-Log" target="_blank">New version is available</a></li>').appendTo($ul);

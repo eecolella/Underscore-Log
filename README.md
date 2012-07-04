@@ -1,22 +1,34 @@
 Underscore Log
 ==============
-<b>Cross Browser advaced logging with Underscore Log and Firebug Lite</b>
+<b>Cross Browser advanced logging with Underscore Log and Firebug Lite</b>
 
 ----------------------------------------------------------------------------
 
 #Goal
 
-Tell the truth, in javascript is not possible to apply a powerfull and deep logging architecture in your applications.
+To tell the truth, in javascript is not possible to apply a deep and powerfull logging architecture in your applications.
 
-This is because, the console object is supported only for new generation browsers and, when you want to use it to test your code, you always have to remember to remove that calls before run your application in a old-generation browser.
+This is because the console object is supported only by the new generation browsers and, when you want to use it to test your code, you always have to remember to remove those calls before running your application in an old-generation browser.
 
-Moreover, you have to know that there isn't a unique implementation also between all new-generation browsers and that the user interface is always different.
+Moreover, you olso have to remember that there isn't a unique implementation between all the new-generation browsers and that the user interface is always different.
 
-For this reasons is born the "Underscore Log" project, that unifies writing code and final user interface for the logging layer of your applications.
+For this reasons the "Underscore Log" project was created, to standardize the code writing and user interface of the logging layer of your applications.
 
-With this tool, using the method _log.assert you can also run simple tests on your code, in the same time you write it. 
+With this tool, by using the method _log.assert, you can also write the main code and run simple tests on it at the same time.
 
-To accomplish this, Underscrore Log is helped by Firebug Lite, using this basic functions, fixing some and adding others.
+To accomplish this, Underscore Log is helped by a custom version of Firebug Lite, which has some new functions and fixes.
+
+----------------------------------------------------------------------------
+
+#Demo
+
+http://eecolella.com/UnderscoreLog/
+
+----------------------------------------------------------------------------
+
+#Wow to use
+
+http://eecolella.com/UnderscoreLog/
 
 ----------------------------------------------------------------------------
 
