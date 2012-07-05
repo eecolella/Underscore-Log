@@ -31,12 +31,13 @@
 }
 #eecBar
 {
-    position: absolute;
+    position: fixed;
     top: 50px;
     right: 0;
 	overflow: hidden;
     font-family: Helvetica, sans-serif; 
 	padding: 10px 0px 10px 10px;
+	z-index:99999;
 }
 	#eecBar > div {
 		background: #f0f0f0;
@@ -49,12 +50,15 @@
 		box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.05);
 		border: 1px solid #d8d8d8;
 		border-right: none;
+		width: 250px;
+		left: 213px;
+		position: relative;
 	}
 		#eecBar > div > div
 		{
 			border: 1px solid #d8d8d8;
 			-webkit-box-shadow: inset 0px 0px 6px 0px #ececec;
-			-moz-box-shadow: 0px 3px 7px #ececec;
+			-moz-box-shadow: inset 0px 0px 6px 0px #ececec;
 			box-shadow: inset 0px 0px 6px 0px #ececec;
 			background: #f4f4f4;
 			color: #707070;
@@ -73,9 +77,7 @@
 
 #uLog
 {
-    width: 250px;
 	font-weight: bold;
-	margin-right: -213px;
 	cursor: pointer;
 	font-size: 17px;
 }
@@ -156,5 +158,5 @@
 }
 
 .noborder{
-	border:0;
+	border:0 !important;
 }

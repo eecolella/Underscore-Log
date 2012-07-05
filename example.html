@@ -19,7 +19,7 @@
     <script type="text/javascript" src="Scripts/underscoreLogExt.js"></script>
 
     <script type="text/javascript">
-         
+
         _log.open();
         _log('The console was opened by code!');
         _log('I\'m a simple message by _log()');
@@ -29,7 +29,7 @@
         _log.assert(23 == 90, 'I\'m a failed comparison assertion');
         _log.assert(23 == 23, 'I\'m a approved comparison assertion');
         _log.groupEnd('I\'m a group expandend');
-        
+    
         _log.time('I\'m a timer');
 
         setTimeout(function () {
@@ -44,8 +44,7 @@
             _log.assert(23 == 90, 'I\'m a failed comparison assertion');
             _log.groupEnd('I\'m a group collapsed but i opened because i contain a error');
 
-            _log.external('I\'m external function', [1, 2, 3], { scope:'I\'am a scope'});
-
+            _log.external('I\'m external function', [1, 2, 3], { scope: 'I\'am a scope' });
             _log.time('I\'m a timer');
 
             setTimeout(function () {
@@ -61,10 +60,10 @@
         }, 800);
 
     </script>
-
-    <style type="text/css"> html,body { margin:0; padding:0; height:100%; background:#f0f0f0} #imgUnderscoreLog { text-align:center} </style>
+    <style type="text/css"> html { overflow-x:hidden} html,body { margin:0; padding:0; height:100%; background:#f8f8f8} #imgUnderscoreLog { text-align:center}</style>
 </head>
 <body>
-    <div id="imgUnderscoreLog"><img src="Styles/imgUnderscoreLog.png" alt="Underscore Log" /></div>
+    <div id="imgUnderscoreLog">
+        <img src="Styles/imgUnderscoreLog.png" alt="Underscore Log" /></div>
 </body>
 </html>

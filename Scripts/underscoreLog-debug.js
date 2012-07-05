@@ -15,7 +15,6 @@ window['_' + 'log'] = (function ($) {
             ulog.toggle();
         }
     });
-    window.asd = $uLog;
     var $ul = $('<ul></ul>').appendTo($uLog.children());
     var $gen = $('<li class="clearfix noborder"><div class="icon uLog"></div><div class="text uLog">Underscore Log</div></li>').appendTo($ul);
     var $error = $('<li><div class="counter error">0</div><div class="text error">Errors</div></li>').appendTo($ul);
@@ -329,11 +328,11 @@ window['_' + 'log'] = (function ($) {
         else
             var $eecBar = $('<div id="eecBar"></div>').appendTo($('body')).on('mouseenter', '.child', function () {
                 $(this).stop().animate({
-                    'margin-right': '-10px'
+                    'left': '10px'
                 }, 100);
             }).on('mouseleave', '.child', function () {
                 $(this).stop().animate({
-                    'margin-right': '-213px'
+                    'left': '213px'
                 }, 100);
             });
 
