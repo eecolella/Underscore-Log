@@ -7,8 +7,11 @@ Underscore Log
 #Goal
 
 In javascript is pretty hard to obtain a cross browser logging architecture in your applications.
+
 The mainly reason of this is due to the console object that is only supported by the new generation browsers and for this reason cannot be used in old browsers.
+
 <b>The Underscore Log projects solves this problem by standardizing the way you write code and the way the logs are displayed in your browser.</b>
+
 In addition this tool provides a simple test framework which allows you to test and log asserts.
 
 ----------------------------------------------------------------------------
@@ -16,6 +19,7 @@ In addition this tool provides a simple test framework which allows you to test 
 #Demo
 
 http://eecolella.com/UnderscoreLog/
+
 ----------------------------------------------------------------------------
 
 #Features
@@ -29,7 +33,6 @@ http://eecolella.com/UnderscoreLog/
 <li>Provides asserts for checking expected values into your code.</li>
 <li>Auto updates if a new version is available on github.</li>
 </ul>
-
 
 ----------------------------------------------------------------------------
 
@@ -48,16 +51,18 @@ http://eecolella.com/UnderscoreLog/
 <li>Before releasing your code, remove Underscore Log by replacing "_log" with "//_log".</li>
 <li>Compress your source code using any compressor which deletes comments (e.g http://closure-compiler.appspot.com/home).</li>
 </ul>
-or
-</ul>
+
+#### or
+
+<ul>
 <li>Replace your code manually using <a href="http://eecolella.com/UnderscoreLog/Styles/CreativeCommons.gif">Underscore Log Cleaner</a>.</li>
 </ul>
-or
-</ul>
+
+#### or
+
+<ul>
 <li>Using an editor that supports regular expressions remove Underscore Log using this pattern: [\s\t]*_log.*</li>
 </ul>
-
-
 
 ----------------------------------------------------------------------------
 
