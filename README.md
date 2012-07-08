@@ -21,6 +21,7 @@ In addition this tool provides a simple test framework which allows you to test 
 #Demo
 
 http://eecolella.com/UnderscoreLog/Demo
+
 ----------------------------------------------------------------------------
 
 #Cleaner
@@ -46,12 +47,10 @@ http://eecolella.com/UnderscoreLog/Cleaner
 #How to log with Underscore Log
 
 <ul>
-<li>
-	In your HTML file add required references to Underscore Log
-
-	<img src="https://raw.github.com/eeColella/Underscore-Log/master/Styles/UnderscoreLogReference.png" />
-
-</li>
+<li>In your HTML file add required references to Underscore Log</li>
+</ul>
+<img src="https://raw.github.com/eeColella/Underscore-Log/master/Styles/UnderscoreLogReference.png" />
+<ul>
 <li>Write your javascript code an log what you need by calling Underscore Log's methods.</li>
 <li>Use Firebug to view your log massages.</li>
 </ul>
