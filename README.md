@@ -8,7 +8,7 @@ Underscore Log
 
 In javascript is pretty hard to obtain a cross browser logging architecture in your applications.
 
-The mainly reason of this is due to the console object that is only supported by the new generation browsers and for this reason cannot be used in old browsers.
+The mainly reason of this is due to the console object that is only supported by the new generation browsers and different implementations of it.
 
 <b>The Underscore Log projects solves this problem by standardizing the way you write code and the way the logs are displayed in your browser.</b>
 
