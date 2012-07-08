@@ -3147,3 +3147,8 @@ position. if so, override it at chrome.js initialization when creating the div *
 .FirebugPopup #fbHSplitter {
     display: none !important;
 }
+
+        #FirebugUI.opened
+        {
+            min-height: 67px;
+        }

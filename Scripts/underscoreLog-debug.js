@@ -352,7 +352,7 @@ window['_' + 'log'] = (function ($) {
             document.getElementsByTagName("head")[0].appendChild(ulogVer);
         })('1.0.0');
     });
-
+    ulog.close();
     return ulog;
 
 })(jQuery);

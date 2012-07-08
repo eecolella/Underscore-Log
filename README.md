@@ -14,11 +14,18 @@ The mainly reason of this is due to the console object that is only supported by
 
 In addition this tool provides a simple test framework which allows you to test and log asserts.
 
+<img src="https://raw.github.com/eeColella/Underscore-Log/master/Styles/UnderscoreLogPreview.png" />
+
 ----------------------------------------------------------------------------
 
 #Demo
 
-http://eecolella.com/UnderscoreLog/
+http://eecolella.com/UnderscoreLog/Demo
+----------------------------------------------------------------------------
+
+#Cleaner
+
+http://eecolella.com/UnderscoreLog/Cleaner
 
 ----------------------------------------------------------------------------
 
@@ -41,6 +48,9 @@ http://eecolella.com/UnderscoreLog/
 <ul>
 <li>
 	In your HTML file add required references to Underscore Log
+
+	<img src="https://raw.github.com/eeColella/Underscore-Log/master/Styles/UnderscoreLogReference.png" />
+
 </li>
 <li>Write your javascript code an log what you need by calling Underscore Log's methods.</li>
 <li>Use Firebug to view your log massages.</li>
@@ -55,7 +65,7 @@ http://eecolella.com/UnderscoreLog/
 #### or
 
 <ul>
-<li>Replace your code manually using <a href="http://eecolella.com/UnderscoreLog/Styles/CreativeCommons.gif">Underscore Log Cleaner</a>.</li>
+<li>Replace your code manually using <a href="http://eecolella.com/UnderscoreLog/Cleaner">Underscore Log Cleaner</a>.</li>
 </ul>
 
 #### or
@@ -176,4 +186,4 @@ http://eecolella.com/UnderscoreLog/
 <li>auto update checker feature does not work in IE browser.</li> 
 </ul>
 
-<img src="http://eecolella.com/UnderscoreLog/Styles/CreativeCommons.gif" />
+<img src="https://raw.github.com/eeColella/Underscore-Log/master/Styles/CreativeCommons.gif" />
